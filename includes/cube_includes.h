@@ -6,7 +6,7 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 11:11:36 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/06/26 14:49:14 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/06/26 16:40:33 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,14 @@
 # include <string.h>
 # include <stdio.h>
 
+typedef struct s_wall
+{
+	t_img	*n;
+	t_img	*s;
+	t_img	*e;
+	t_img	*w;
+}	t_wall;
+
 typedef struct s_game
 {
 	char	**input;
@@ -39,6 +47,7 @@ typedef struct s_game
 	char	*east;
 	char	*floor;
 	char	*roof;
+	t_wall	wall;
 	int		vinputnbr;
 	char	**map;
 	
