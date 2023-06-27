@@ -1,30 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   testmain.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/26 11:36:36 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/06/27 11:50:29 by nwyseur          ###   ########.fr       */
+/*   Created: 2023/06/27 11:22:34 by nwyseur           #+#    #+#             */
+/*   Updated: 2023/06/27 11:47:59 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cube_includes.h"
 
-int	ft_cub(char *str)
-{
-	int	len;
-
-	len = ft_strlen(str);
-	if (str[len -1] == 'b' && str[len - 2] == 'u'
-		&& str[len - 3] == 'c' && str[len - 4] == '.')
-		return (1);
-	write(2, "Error\n invalid file form (.cub expected)", 40);
-	return (0);
-}
-
-/* int	main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
 	t_game	*game;
 
@@ -44,13 +32,12 @@ int	ft_cub(char *str)
 			//ft_freeall(game);
 			return (0);
 		}
-		if (ft_game(game) == 0)
+		/* if (ft_game(game) == 0)
 		{
 			free(game);
 			return (0);
 		}
 		ft_freeall(game);
-
+		*/
 	}
 }
-*/

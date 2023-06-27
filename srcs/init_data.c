@@ -6,11 +6,11 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 12:36:01 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/06/26 16:06:38 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/06/27 11:48:09 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cube_includes.h"
+#include "../includes/cube_includes.h"
 
 int	ft_mapsize(char *str)
 {
@@ -86,10 +86,16 @@ int	ft_init_game(t_game *game, char *str)
 	if (game->input == NULL)
 		return (0);
 	game->vinputnbr = 0;
-	game->north = ft_findinput(game, "NO ");
-	game->south = ft_findinput(game, "SO ");
-	game->west = ft_findinput(game, "WE ");
-	game->east = ft_findinput(game, "EA ");
+	game->wall.no = ft_findinput(game, "NO ");
+	game->wall.so = ft_findinput(game, "SO ");
+	game->wall.we = ft_findinput(game, "WE ");
+	game->wall.ea = ft_findinput(game, "EA ");
 	game->floor = ft_findinput(game, "F ");
 	game->roof = ft_findinput(game, "C ");
+	game->mlx = mlx_init();
+	if (!game->mlx)
+	{
+		// ft_strfree(game->map, game->map_width);
+		return (0);
+	}
 }

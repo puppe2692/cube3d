@@ -6,11 +6,11 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 14:00:19 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/06/26 16:46:06 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/06/27 12:31:50 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cube_includes.h"
+#include "../includes/cube_includes.h"
 
 int	ft_vwronginput(t_game *game)
 {
@@ -25,7 +25,9 @@ int	ft_vwronginput(t_game *game)
 			&& strncmp(game->input[i], "WE ", 3)
 			&& strncmp(game->input[i], "EA ", 3)
 			&& strncmp(game->input[i], "F ", 2)
-			&& strncmp(game->input[i], "J ", 2))
+			&& strncmp(game->input[i], "J ", 2)
+			&& strncmp(game->input[i], "C ", 2)
+			&& strncmp(game->input[i], "\n", 1))
 			return (0);
 		i++;
 	}
@@ -46,27 +48,34 @@ int	ft_vinput(t_game *game)
 		write(2, "inputs placed before the map\n", 29);
 		return (0);
 	}
-	if (game->north == NULL || game->south == NULL || game->west == NULL
-		|| game->east == NULL || game->floor == NULL || game->roof == NULL)
+	if (game->wall.no == NULL || game->wall.so == NULL || game->wall.we == NULL
+		|| game->wall.ea == NULL || game->floor == NULL || game->roof == NULL)
 	{
 		write(2, "Error\n input in double\n", 23);
 		return (0);
 	}
+	return (1);
 }
 
-int	ft_infoinput(t_game *game)
+int	ft_vimage(t_game *game)
 {
 	int	w;
 	int	h;
 
+	printf("%s\n", game->wall.no + 3);
 	game->wall.n = mlx_xpm_file_to_image(game->mlx,
-			game->north + 3, &w, &h);
+			game->wall.no + 3, &w, &h);
+	if (game->wall.n == NULL)
+	{
+		write(2, "tamere", 6);
+		return (0);
+	}
 	game->wall.s = mlx_xpm_file_to_image(game->mlx,
-			game->south + 3, &w, &h);
+			game->wall.so + 3, &w, &h);
 	game->wall.e = mlx_xpm_file_to_image(game->mlx,
-			game->east + 3, &w, &h);
+			game->wall.we + 3, &w, &h);
 	game->wall.w = mlx_xpm_file_to_image(game->mlx,
-			game->west + 3, &w, &h);
+			game->wall.ea + 3, &w, &h);
 	if (game->wall.n == NULL || game->wall.s == NULL
 		|| game->wall.e == NULL || game->wall.w == NULL)
 	{
@@ -76,24 +85,38 @@ int	ft_infoinput(t_game *game)
 	return (1);
 }
 
+int	ft_vcolor(t_game *game)
+{
+	int	i;
+	int	j;
+	int	k;
+
+	game->fcol = ft_split(game->floor + 2, ',');
+	game->rcol = ft_split(game->roof + 2, ',');
+	i = 0;
+	while (i < 3)
+	{
+		j = ft_atoi(game->fcol[i]);
+		k = ft_atoi(game->rcol[i]);
+		if (j < 0 || j > 255 || i < 0 || i > 255)
+		{
+			write(2, "Error\n color format", 19);
+			return (0);
+		}
+		i++;
+	}
+	return (1);
+
+
+}
+
 int	ft_parsing(t_game *game)
 {
 	if (ft_vinput(game) == 0)
 		return (0);
-	if (ft_vinfoinput(game) == 0)
-	{
-		write(2, "Error\n invalid map shape", 24);
+	if (ft_vimage(game) == 0)
 		return (0);
-	}
-	if (ft_velem(game->map_str, game) == 0)
-	{
-		write(2, "Error\n invalid map element", 26);
+	if (ft_vcolor(game) == 0)
 		return (0);
-	}
-	if (ft_vwall(game) == 0)
-	{
-		write(2, "Error\n invalid map wall", 23);
-		return (0);
-	}
 	return (1);
 }

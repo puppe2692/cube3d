@@ -6,7 +6,7 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 11:11:36 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/06/26 16:40:33 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/06/27 11:50:11 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,10 @@
 
 typedef struct s_wall
 {
+	char	*no;
+	char	*so;
+	char	*we;
+	char	*ea;
 	t_img	*n;
 	t_img	*s;
 	t_img	*e;
@@ -41,34 +45,32 @@ typedef struct s_game
 {
 	char	**input;
 	int		inputsize;
-	char	*north;
-	char	*south;
-	char	*west;
-	char	*east;
+	t_wall	wall;
 	char	*floor;
 	char	*roof;
-	t_wall	wall;
+	char	**fcol;
+	char	**rcol;
 	int		vinputnbr;
 	char	**map;
-	
-	char	*map_str;
-	int		map_length;
-	int		map_width;
-	int		collec;
-	int		player;
-	int		ppx;
-	int		ppy;
-	int		end;
-	int		nb_move;
-	int		nb_cc;
 	void	*mlx;
-	void	*win;
-	int		img_size;
-	int		win_width;
-	int		win_height;
-	int		dstr;
-	t_img	*sw;
-	t_img	*sf;
 }	t_game;
+
+
+// main
+int		ft_cub(char *str);
+int		main(int argc, char **argv);
+
+// initialisation
+int		ft_mapsize(char *str);
+char	**ft_readmap(t_game *game, char *str);
+char	*ft_findinput(t_game *game, char *str);
+int		ft_init_game(t_game *game, char *str);
+
+//Parsing
+int		ft_vwronginput(t_game *game);
+int		ft_vinput(t_game *game);
+int		ft_vimage(t_game *game);
+int		ft_vcolor(t_game *game);
+int		ft_parsing(t_game *game);
 
 #endif

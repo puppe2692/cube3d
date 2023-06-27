@@ -6,13 +6,16 @@
 #    By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/28 21:18:35 by nwyseur           #+#    #+#              #
-#    Updated: 2023/06/26 10:56:04 by nwyseur          ###   ########.fr        #
+#    Updated: 2023/06/27 11:54:45 by nwyseur          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		= cub3D
 
-SRCS_FILES	= main.c \
+SRCS_FILES	= testmain.c \
+				main.c \
+				init_data.c \
+				parsing.c \
 
 HEADER_FILE	= cub3D_includes.h
 
@@ -41,7 +44,7 @@ RM			= rm -f
 all:		${NAME}
 
 ${NAME}:	${OBJS} ${LIBFT} ${MLX}
-			${CC} ${CC_FLAGS} -I${INC_DIR} -I${MLX_INC} -o ${NAME} ${OBJS} ${LIBFT} -lft ${MLX_LIB}
+			${CC} ${CC_FLAGS} -I${INC_DIR} -I${MLX_INC} -o ${NAME} ${OBJS} ${LIBFT} ${MLX_LIB}
 			@echo "$(GREEN)$(NAME) created!$(DEFAULT)"
 
 ${LIBFT}:	
