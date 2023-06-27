@@ -6,7 +6,7 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/27 14:29:46 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/06/27 15:45:45 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/06/27 16:24:54 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,19 @@ void	ft_convertdir(t_game *game)
 	free (tmp);
 }
 
+void	ft_convertcolor(t_game *game)
+{
+	char	*tmp;
+
+	tmp = game->floor;
+	game->floor = ft_substr(tmp, 2, ft_strlen(tmp) - 3);
+	free (tmp);
+	tmp = game->roof;
+	game->roof = ft_substr(tmp, 2, ft_strlen(tmp) - 3);
+	free (tmp);
+
+}
+
 int	ft_vcolor_suite(char **hex)
 {
 	int	i;
@@ -41,12 +54,12 @@ int	ft_vcolor_suite(char **hex)
 	if (i != 3)
 		return (0);
 	i = -1;
-	while (hex[i++] != NULL)
+	while (hex[++i] != NULL)
 	{
 		j = 0;
-		while (hex[i][j] != '\0' || hex[i][j] != '\n')
+		while (hex[i][j] != '\0')
 		{
-			if (hex[i][j] < 48 || hex[i][j] > 57)
+			if (hex[i][j] < 48 || hex[i][j] > 57 || j > 2)
 				return (0);
 			j++;
 		}
@@ -60,15 +73,16 @@ int	ft_vcolor(t_game *game)
 	int	j;
 	int	k;
 
-	game->fcol = ft_split(game->floor + 2, ',');
-	game->rcol = ft_split(game->roof + 2, ',');
-	i = 0;
+	ft_convertcolor(game);
+	game->fcol = ft_split(game->floor, ',');
+	game->rcol = ft_split(game->roof, ',');
+	i = -1;
 	if (ft_vcolor_suite(game->fcol) == 0 || ft_vcolor_suite(game->rcol) == 0)
 	{
 		write(2, "Error\n color format", 19);
 		return (0);
 	}
-	while (i < 3)
+	while (++i < 3)
 	{
 		j = ft_atoi(game->fcol[i]);
 		k = ft_atoi(game->rcol[i]);
@@ -78,7 +92,6 @@ int	ft_vcolor(t_game *game)
 			write(2, "Error\n color format", 19);
 			return (0);
 		}
-		i++;
 	}
 	return (1);
 }

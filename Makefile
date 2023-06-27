@@ -6,7 +6,7 @@
 #    By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/28 21:18:35 by nwyseur           #+#    #+#              #
-#    Updated: 2023/06/27 14:36:06 by nwyseur          ###   ########.fr        #
+#    Updated: 2023/06/27 16:03:55 by nwyseur          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,7 @@ OBJS		= ${SRCS:.c=.o}
 HEADER		= $(addprefix ${INC_DIR}, ${HEADER_FILE})
 
 CC			= cc
-CC_FLAGS	= -Wall -Wextra -Werror -g
+CC_FLAGS	= -Wall -Wextra -Werror -g3
 
 RM			= rm -f
 

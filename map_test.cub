@@ -3,8 +3,8 @@ SO ./images/imagetest.xpm
 EA ./images/imagetest.xpm
 WE ./images/imagetest.xpm
 
-F 255,120,2
-C 225,30,100
+F 255,120,112
+C 225,123,2
 
         1111111111111111111111111
         1000000000110000000000001
