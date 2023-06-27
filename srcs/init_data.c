@@ -6,7 +6,7 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 12:36:01 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/06/27 11:48:09 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/06/27 14:30:13 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,6 @@ char	*ft_findinput(t_game *game, char *str)
 		return (NULL);
 	return (tmp);
 }
-
 
 int	ft_init_game(t_game *game, char *str)
 {

@@ -6,7 +6,7 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 14:00:19 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/06/27 12:31:50 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/06/27 14:41:43 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,20 +62,15 @@ int	ft_vimage(t_game *game)
 	int	w;
 	int	h;
 
-	printf("%s\n", game->wall.no + 3);
+	ft_convertdir(game);
 	game->wall.n = mlx_xpm_file_to_image(game->mlx,
-			game->wall.no + 3, &w, &h);
-	if (game->wall.n == NULL)
-	{
-		write(2, "tamere", 6);
-		return (0);
-	}
+			game->wall.no, &w, &h);
 	game->wall.s = mlx_xpm_file_to_image(game->mlx,
-			game->wall.so + 3, &w, &h);
+			game->wall.so, &w, &h);
 	game->wall.e = mlx_xpm_file_to_image(game->mlx,
-			game->wall.we + 3, &w, &h);
+			game->wall.we, &w, &h);
 	game->wall.w = mlx_xpm_file_to_image(game->mlx,
-			game->wall.ea + 3, &w, &h);
+			game->wall.ea, &w, &h);
 	if (game->wall.n == NULL || game->wall.s == NULL
 		|| game->wall.e == NULL || game->wall.w == NULL)
 	{

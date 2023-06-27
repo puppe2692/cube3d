@@ -6,7 +6,7 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 11:11:36 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/06/27 11:50:11 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/06/27 14:35:56 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,5 +72,8 @@ int		ft_vinput(t_game *game);
 int		ft_vimage(t_game *game);
 int		ft_vcolor(t_game *game);
 int		ft_parsing(t_game *game);
+
+//Parsing_2
+void	ft_convertdir(t_game *game);
 
 #endif
