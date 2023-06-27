@@ -6,7 +6,7 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 14:00:19 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/06/27 14:41:43 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/06/27 15:45:46 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,31 +78,6 @@ int	ft_vimage(t_game *game)
 		return (0);
 	}
 	return (1);
-}
-
-int	ft_vcolor(t_game *game)
-{
-	int	i;
-	int	j;
-	int	k;
-
-	game->fcol = ft_split(game->floor + 2, ',');
-	game->rcol = ft_split(game->roof + 2, ',');
-	i = 0;
-	while (i < 3)
-	{
-		j = ft_atoi(game->fcol[i]);
-		k = ft_atoi(game->rcol[i]);
-		if (j < 0 || j > 255 || i < 0 || i > 255)
-		{
-			write(2, "Error\n color format", 19);
-			return (0);
-		}
-		i++;
-	}
-	return (1);
-
-
 }
 
 int	ft_parsing(t_game *game)
