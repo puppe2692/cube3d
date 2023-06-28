@@ -6,7 +6,7 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 12:36:01 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/06/28 16:33:09 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/06/28 18:52:10 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,11 +93,11 @@ int	ft_init_game(t_game *game, char *str)
 	game->floor = ft_findinput(game, "F ");
 	game->roof = ft_findinput(game, "C ");
 	game->mlx = mlx_init();
+	ft_init_map(game);
 	if (!game->mlx)
 	{
 		// ft_strfree(game->map, game->map_width);
 		return (0);
 	}
-	ft_init_map(game);
 	return (1);
 }

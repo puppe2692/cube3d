@@ -6,7 +6,7 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 11:11:36 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/06/28 15:47:14 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/06/28 18:31:23 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,10 @@ char	*ft_findinput(t_game *game, char *str);
 int		ft_init_game(t_game *game, char *str);
 
 //Init_map
-int	ft_init_map(t_game *game);
+int		ft_init_map(t_game *game);
+void	ft_mapcopy(t_game *game);
+int		ft_mapmalloc(t_game *game);
+void	ft_hautlarg(t_game *game);
 
 //Parsing
 int		ft_vwronginput(t_game *game);
