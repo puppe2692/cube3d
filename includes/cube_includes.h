@@ -6,7 +6,7 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 11:11:36 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/06/27 16:19:53 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/06/28 15:47:14 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,13 @@ typedef struct s_wall
 	t_img	*w;
 }	t_wall;
 
+typedef struct s_map
+{
+	char	**map;
+	int		haut;
+	int		larg;
+}	t_map;
+
 typedef struct s_game
 {
 	char	**input;
@@ -51,20 +58,23 @@ typedef struct s_game
 	char	**fcol;
 	char	**rcol;
 	int		vinputnbr;
-	char	**map;
 	void	*mlx;
+	t_map	map;
 }	t_game;
 
 
-// main
+//Main
 int		ft_cub(char *str);
 int		main(int argc, char **argv);
 
-// initialisation
+//Init_data
 int		ft_mapsize(char *str);
 char	**ft_readmap(t_game *game, char *str);
 char	*ft_findinput(t_game *game, char *str);
 int		ft_init_game(t_game *game, char *str);
+
+//Init_map
+int	ft_init_map(t_game *game);
 
 //Parsing
 int		ft_vwronginput(t_game *game);

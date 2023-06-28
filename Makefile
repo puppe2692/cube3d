@@ -6,7 +6,7 @@
 #    By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/28 21:18:35 by nwyseur           #+#    #+#              #
-#    Updated: 2023/06/27 16:03:55 by nwyseur          ###   ########.fr        #
+#    Updated: 2023/06/28 15:03:36 by nwyseur          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,8 +15,8 @@ NAME		= cub3D
 SRCS_FILES	= testmain.c \
 				main.c \
 				init_data.c \
-				parsing.c \
-				parsing_2.c \
+				parsing_input.c \
+				parsing_input_2.c \
 
 HEADER_FILE	= cub3D_includes.h
 

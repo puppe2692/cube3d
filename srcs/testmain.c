@@ -6,7 +6,7 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/27 11:22:34 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/06/27 11:47:59 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/06/28 14:59:30 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ int	main(int argc, char **argv)
 			//ft_freeall(game);
 			return (0);
 		}
+		printf("%s\n", game->floor);
+		printf("%s\n", game->input[5]);
 		/* if (ft_game(game) == 0)
 		{
 			free(game);

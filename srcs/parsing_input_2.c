@@ -6,7 +6,7 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/27 14:29:46 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/06/27 16:24:54 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/06/28 14:59:51 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,33 +14,16 @@
 
 void	ft_convertdir(t_game *game)
 {
-	char	*tmp;
-
-	tmp = game->wall.no;
-	game->wall.no = ft_substr(tmp, 3, ft_strlen(tmp) - 4);
-	free (tmp);
-	tmp = game->wall.so;
-	game->wall.so = ft_substr(tmp, 3, ft_strlen(tmp) - 4);
-	free (tmp);
-	tmp = game->wall.we;
-	game->wall.we = ft_substr(tmp, 3, ft_strlen(tmp) - 4);
-	free (tmp);
-	tmp = game->wall.ea;
-	game->wall.ea = ft_substr(tmp, 3, ft_strlen(tmp) - 4);
-	free (tmp);
+	game->wall.no = ft_substr(game->wall.no, 3, ft_strlen(game->wall.no) - 4);
+	game->wall.so = ft_substr(game->wall.so, 3, ft_strlen(game->wall.so) - 4);
+	game->wall.we = ft_substr(game->wall.we, 3, ft_strlen(game->wall.we) - 4);
+	game->wall.ea = ft_substr(game->wall.ea, 3, ft_strlen(game->wall.ea) - 4);
 }
 
 void	ft_convertcolor(t_game *game)
 {
-	char	*tmp;
-
-	tmp = game->floor;
-	game->floor = ft_substr(tmp, 2, ft_strlen(tmp) - 3);
-	free (tmp);
-	tmp = game->roof;
-	game->roof = ft_substr(tmp, 2, ft_strlen(tmp) - 3);
-	free (tmp);
-
+	game->floor = ft_substr(game->floor, 2, ft_strlen(game->floor) - 3);
+	game->roof = ft_substr(game->roof, 2, ft_strlen(game->roof) - 3);
 }
 
 int	ft_vcolor_suite(char **hex)
