@@ -6,7 +6,7 @@
 #    By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/28 21:18:35 by nwyseur           #+#    #+#              #
-#    Updated: 2023/06/30 10:49:20 by nwyseur          ###   ########.fr        #
+#    Updated: 2023/06/30 12:12:22 by nwyseur          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,8 +18,9 @@ SRCS_FILES	:= testmain.c \
 				init_map.c \
 				parsing_input.c \
 				parsing_input_2.c \
+				parsing_map.c
 
-HEADER_FILE	:= cub3D_includes.h
+HEADER_FILE	:= cube_includes.h
 
 SRCS_DIR	:= ./srcs/
 INC_DIR		:= ./includes/
@@ -41,7 +42,7 @@ CC_FLAGS	= -Wall -Wextra -Werror -g3
 RM			:= rm -f
 
 %.o : %.c	${HEADER}
-				${CC} ${CC_FLAGS} -I${INC_DIR} -I${MLX_INC} -c $< -o $@
+			${CC} ${CC_FLAGS} -I${INC_DIR} -I${MLX_INC} -c $< -o $@
 
 all:		${NAME}
 

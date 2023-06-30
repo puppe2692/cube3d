@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.c                                          :+:      :+:    :+:   */
+/*   parsing_input.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 14:00:19 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/06/28 14:47:28 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/06/30 12:13:00 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,8 @@ int	ft_parsing(t_game *game)
 	if (ft_vimage(game) == 0)
 		return (0);
 	if (ft_vcolor(game) == 0)
+		return (0);
+	if (ft_parsingmap(game) == 0)
 		return (0);
 	return (1);
 }

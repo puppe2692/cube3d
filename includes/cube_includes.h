@@ -6,7 +6,7 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 11:11:36 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/06/28 18:31:23 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/06/30 11:15:17 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@
 # include <X11/X.h>
 # include <string.h>
 # include <stdio.h>
+
+
 
 typedef struct s_wall
 {

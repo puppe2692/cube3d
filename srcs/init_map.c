@@ -6,7 +6,7 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 15:43:24 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/06/28 18:55:32 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/06/30 12:03:39 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,13 +42,13 @@ int	ft_mapmalloc(t_game *game)
 	int	j;
 
 	i = -1;
-	game->map.map = malloc((game->map.haut + 1) * sizeof(char *));
+	game->map.map = ft_calloc((game->map.haut + 1), sizeof(char *));
 	if (!game->map.map)
 		return (0);
 	game->map.map[game->map.haut] = NULL;
 	while (game->map.map[++i] != NULL)
 	{
-		game->map.map[i] = malloc((game->map.larg + 1) * sizeof(char));
+		game->map.map[i] = ft_calloc((game->map.larg + 1), sizeof(char));
 		if (!game->map.map[i])
 		return (0); // free management return (free de ce qui est creer + 0)
 		game->map.map[i][game->map.larg] = '\0';
