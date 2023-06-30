@@ -6,42 +6,42 @@
 #    By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/28 21:18:35 by nwyseur           #+#    #+#              #
-#    Updated: 2023/06/28 19:02:49 by nwyseur          ###   ########.fr        #
+#    Updated: 2023/06/30 10:49:20 by nwyseur          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME		= cub3D
+NAME		:= cub3D
 
-SRCS_FILES	= testmain.c \
+SRCS_FILES	:= testmain.c \
 				main.c \
 				init_data.c \
 				init_map.c \
 				parsing_input.c \
 				parsing_input_2.c \
 
-HEADER_FILE	= cub3D_includes.h
+HEADER_FILE	:= cub3D_includes.h
 
-SRCS_DIR	= ./srcs/
-INC_DIR		= ./includes/
+SRCS_DIR	:= ./srcs/
+INC_DIR		:= ./includes/
 
-LIBFT		= ./libft/libft.a
-LIBFT_PATH	= ./libft
+LIBFT		:= ./libft/libft.a
+LIBFT_PATH	:= ./libft
 
 MLX			:= ./minilibx-linux/libmlx.a
 MLX_INC		:= ./minilibx-linux
 MLX_LIB		:= -lX11 -lXext -L./minilibx-linux -lmlx
 
-SRCS		= $(addprefix ${SRCS_DIR}, ${SRCS_FILES})
-OBJS		= ${SRCS:.c=.o}
-HEADER		= $(addprefix ${INC_DIR}, ${HEADER_FILE})
+SRCS		:= $(addprefix ${SRCS_DIR}, ${SRCS_FILES})
+OBJS		:= ${SRCS:.c=.o}
+HEADER		:= $(addprefix ${INC_DIR}, ${HEADER_FILE})
 
-CC			= cc
+CC			:= cc
 CC_FLAGS	= -Wall -Wextra -Werror -g3
 
-RM			= rm -f
+RM			:= rm -f
 
 %.o : %.c	${HEADER}
-			${CC} ${CC_FLAGS} -I${INC_DIR} -I${MLX_INC} -c $< -o $@
+				${CC} ${CC_FLAGS} -I${INC_DIR} -I${MLX_INC} -c $< -o $@
 
 all:		${NAME}
 
