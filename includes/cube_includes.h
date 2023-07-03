@@ -6,7 +6,7 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 11:11:36 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/06/30 11:15:17 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/07/03 16:15:09 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,12 @@ typedef struct s_map
 	int		larg;
 }	t_map;
 
+typedef struct s_pos
+{
+	int			x;
+	int			y;
+}	t_pos;
+
 typedef struct s_game
 {
 	char	**input;
@@ -76,9 +82,9 @@ char	*ft_findinput(t_game *game, char *str);
 int		ft_init_game(t_game *game, char *str);
 
 //Init_map
-int		ft_init_map(t_game *game);
-void	ft_mapcopy(t_game *game);
-int		ft_mapmalloc(t_game *game);
+char	**ft_init_map(t_game *game);
+void	ft_mapcopy(t_game *game, char **new);
+char	**ft_mapmalloc(t_game *game, char **new);
 void	ft_hautlarg(t_game *game);
 
 //Parsing
@@ -92,5 +98,13 @@ void	ft_convertdir(t_game *game);
 int		ft_vcolor(t_game *game);
 int		ft_vcolor_suite(char **hex);
 void	ft_convertcolor(t_game *game);
+
+//Parsing_Map
+int		ft_vmapinput(t_game *game);
+int		ft_vmapwall_2(t_game *game, int i, int j);
+int		ft_closespace(t_game *game, int i, int j);
+int		ft_vmapwall_space(t_game *game);
+int		ft_vmapwall(t_game *game);
+int		ft_parsingmap(t_game *game);
 
 #endif

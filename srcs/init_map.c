@@ -6,11 +6,22 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 15:43:24 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/06/30 12:03:39 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/07/03 17:30:33 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cube_includes.h"
+
+int	ft_strlencube(const char *s)
+{
+	int32_t	i;
+
+	i = 0;
+	while (s[i] && s[i] != '\n')
+		i++;
+	return (i);
+}
+
 
 void	ft_hautlarg(t_game *game)
 {
@@ -25,67 +36,79 @@ void	ft_hautlarg(t_game *game)
 			i++;
 	while (game->input[j] != NULL)
 		j++;
-	game->map.haut = j;
+	game->map.haut = j - i;
 	game->map.larg = 0;
 	while (game->input[i] != NULL)
 	{
-		len = ft_strlen(game->input[i]);
+		len = ft_strlencube(game->input[i]);
 		if (len > game->map.larg)
 			game->map.larg = len;
 		i++;
 	}
+	printf("%i \n", game->map.haut);
 }
 
-int	ft_mapmalloc(t_game *game)
+char	**ft_mapmalloc(t_game *game, char **new)
 {
 	int	i;
 	int	j;
 
 	i = -1;
-	game->map.map = ft_calloc((game->map.haut + 1), sizeof(char *));
-	if (!game->map.map)
-		return (0);
-	game->map.map[game->map.haut] = NULL;
-	while (game->map.map[++i] != NULL)
+	new = ft_calloc((game->map.haut + 1), sizeof(char *));
+	if (!new)
+		return (NULL);
+	new[game->map.haut] = NULL;
+	while (++i < game->map.haut)
 	{
-		game->map.map[i] = ft_calloc((game->map.larg + 1), sizeof(char));
-		if (!game->map.map[i])
-		return (0); // free management return (free de ce qui est creer + 0)
-		game->map.map[i][game->map.larg] = '\0';
+		new[i] = ft_calloc((game->map.larg + 1), sizeof(char));
+		if (!new[i])
+			return (NULL); // free management return (free de ce qui est creer + 0)
+		new[i][game->map.larg] = '\0';
 	}
 	i = -1;
-	while (game->map.map[++i] != NULL)
+	while (new[++i] != NULL)
 	{
 		j = -1;
-		while (game->map.map[i][++j] != '\0')
-			game->map.map[i][j] = '\0';
+		while (new[i][++j] != '\0')
+			new[i][j] = '\0';
 	}
-	return (1);
+	return (new);
 }
 
-void	ft_mapcopy(t_game *game)
+void	ft_mapcopy(t_game *game, char **new)
 {
 	int	i;
 	int	j;
+	int	k;
 
 	i = 0;
+	j = 0;
 	while (game->input[i] != NULL && game->input[i][0] != ' '
 			&& game->input[i][0] != '1' && game->input[i][0] != '0')
 			i++;
-	j = 0;
 	while (game->input[i] != NULL)
 	{
-		game->map.map[j] = game->input[i];
+		k = 0;
+		while (game->input[i][k] && game->input[i][k] != '\n')
+		{
+			new[j][k] = game->input[i][k];
+			k++;
+		}
 		i++;
 		j++;
 	}
 }
 
-int	ft_init_map(t_game *game)
+char	**ft_init_map(t_game *game)
 {
+	char	**new;
+
+	new = NULL;
 	ft_hautlarg(game);
-	if (ft_mapmalloc(game) == 0)
-		return (0);
-	ft_mapcopy(game);
-	return (1);
+	new = ft_mapmalloc(game, new);
+	if (!new)
+		return (NULL);
+	ft_mapcopy(game, new);
+	return (new);
+
 }

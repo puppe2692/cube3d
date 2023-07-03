@@ -6,7 +6,7 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/27 11:22:34 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/06/28 18:51:08 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/07/03 16:23:32 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,13 @@ int	main(int argc, char **argv)
 			printf("%s\n", game->map.map[i]);
 			i++;
 		}
+		printf("--------------\n");
 		if (ft_parsing(game) == 0)
 		{
 			//ft_freeall(game);
 			return (0);
 		}
+		printf("--------------\n");
 		printf("%s\n", game->floor);
 		printf("%s\n", game->input[5]);
 
