@@ -6,7 +6,7 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 15:09:01 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/07/03 18:03:48 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/07/04 15:28:45 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,11 @@ int	ft_vmapwall_2(t_game *game, int i, int j)
 				|| game->map.map[i - 1][j] == '\0'
 				|| game->map.map[i + 1][j] == ' '
 				|| game->map.map[i + 1][j] == '\0')
-				&& game->map.map[i][j] != '1')
-				return (write(2, "Error\n 2 invalid map wall", 25), 0);
+				&& game->map.map[i][j] != '1' && game->map.map[i][j] != ' ')
+				{
+					
+					return (write(2, "Error\n 2 invalid map wall", 25), 0);
+				}
 			if (game->map.map[i][j + 1] == '\0' && game->map.map[i][j] != '1')
 				return (write(2, "Error\n 3 invalid map wall", 25), 0);
 			j++;
@@ -99,7 +102,10 @@ int	ft_vmapwall_space(t_game *game)
 			if (game->map.map[i][j] == ' ')
 			{
 				if (ft_closespace(game, i, j) == 0)
+				{
+					printf("%i,  %i,  '%c'\n", i, j, game->map.map[i][j]);
 					return (write(2, "Error\n invalid map space", 24), 0);
+				}
 			}
 		}
 	}

@@ -1,0 +1,14 @@
+NO ./images/imagetest.xpm
+SO ./images/imagetest.xpm
+EA ./images/imagetest.xpm
+WE ./images/imagetest.xpm
+
+F 255,2,112
+C 225,123,2
+
+    1
+   101
+  10N01
+  10001
+   101
+    1

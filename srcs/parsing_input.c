@@ -6,11 +6,23 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 14:00:19 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/07/03 16:24:36 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/07/04 16:39:31 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cube_includes.h"
+
+int	ft_spacecount(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i] && str[i] != ' ')
+		i++;
+	while (str[i] && str[i] == ' ')
+		i++;
+	return (i);
+}
 
 int	ft_vwronginput(t_game *game)
 {

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing_2.c                                        :+:      :+:    :+:   */
+/*   parsing_input_2.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/27 14:29:46 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/06/28 14:59:51 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/07/04 16:46:32 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,22 @@
 
 void	ft_convertdir(t_game *game)
 {
-	game->wall.no = ft_substr(game->wall.no, 3, ft_strlen(game->wall.no) - 4);
-	game->wall.so = ft_substr(game->wall.so, 3, ft_strlen(game->wall.so) - 4);
-	game->wall.we = ft_substr(game->wall.we, 3, ft_strlen(game->wall.we) - 4);
-	game->wall.ea = ft_substr(game->wall.ea, 3, ft_strlen(game->wall.ea) - 4);
+	game->wall.no = ft_substr(game->wall.no, ft_spacecount(game->wall.no),
+			ft_strlen(game->wall.no) - (ft_spacecount(game->wall.no) + 1));
+	game->wall.so = ft_substr(game->wall.so, ft_spacecount(game->wall.so),
+			ft_strlen(game->wall.so) - (ft_spacecount(game->wall.so) + 1));
+	game->wall.we = ft_substr(game->wall.we, ft_spacecount(game->wall.we),
+			ft_strlen(game->wall.we) - (ft_spacecount(game->wall.we) + 1));
+	game->wall.ea = ft_substr(game->wall.ea, ft_spacecount(game->wall.ea),
+			ft_strlen(game->wall.ea) - (ft_spacecount(game->wall.ea) + 1));
 }
 
 void	ft_convertcolor(t_game *game)
 {
-	game->floor = ft_substr(game->floor, 2, ft_strlen(game->floor) - 3);
-	game->roof = ft_substr(game->roof, 2, ft_strlen(game->roof) - 3);
+	game->floor = ft_substr(game->floor, ft_spacecount(game->floor),
+			ft_strlen(game->floor) - (ft_spacecount(game->floor) + 1));
+	game->roof = ft_substr(game->roof, ft_spacecount(game->roof),
+			ft_strlen(game->roof) - (ft_spacecount(game->roof) + 1));
 }
 
 int	ft_vcolor_suite(char **hex)
@@ -50,6 +56,33 @@ int	ft_vcolor_suite(char **hex)
 	return (1);
 }
 
+int	ft_nbrcolor(t_game *game)
+{
+	int	i;
+	int	j;
+	int	k;
+
+	i = 0;
+	j = 0;
+	k = 0;
+	while (game->floor[i])
+	{
+		if (game->floor[i] == ',')
+			j++;
+		i++;
+	}
+	i = 0;
+	while (game->roof[i])
+	{
+		if (game->roof[i] == ',')
+			k++;
+		i++;
+	}
+	if (j != 2 || k != 2)
+		return (0);
+	return (1);
+}
+
 int	ft_vcolor(t_game *game)
 {
 	int	i;
@@ -60,7 +93,7 @@ int	ft_vcolor(t_game *game)
 	game->fcol = ft_split(game->floor, ',');
 	game->rcol = ft_split(game->roof, ',');
 	i = -1;
-	if (ft_vcolor_suite(game->fcol) == 0 || ft_vcolor_suite(game->rcol) == 0)
+	if (ft_nbrcolor(game) == 0 || ft_vcolor_suite(game->fcol) == 0 || ft_vcolor_suite(game->rcol) == 0)
 	{
 		write(2, "Error\n color format", 19);
 		return (0);
