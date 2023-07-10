@@ -6,7 +6,7 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 11:11:36 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/07/04 16:38:42 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/07/10 17:19:17 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,18 @@ typedef struct s_pos
 	int			y;
 }	t_pos;
 
+typedef struct s_dpos
+{
+	double			x;
+	double			y;
+}	t_dpos;
+
+typedef struct s_time
+{
+	double			time;
+	double			oldtime;
+}	t_time;
+
 typedef struct s_game
 {
 	char	**input;
@@ -67,7 +79,23 @@ typedef struct s_game
 	char	**rcol;
 	int		vinputnbr;
 	void	*mlx;
+	void	*win;
+	int		dstr;
+	t_pos	res;
 	t_map	map;
+	t_dpos	plpos;
+	t_dpos	dir;
+	t_dpos	plan;
+	t_time	time;
+	double	camerax;
+	double	perpwalldist;
+	t_dpos	raydir;
+	t_dpos	sidedist;
+	t_dpos	deltadist;
+	t_pos	step;
+	t_pos	mapbox;
+	int		hit;
+	int		side;
 }	t_game;
 
 

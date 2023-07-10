@@ -6,7 +6,7 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 12:36:01 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/07/03 11:11:26 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/07/10 15:24:52 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,11 @@ int	ft_init_game(t_game *game, char *str)
 	game->roof = ft_findinput(game, "C ");
 	game->mlx = mlx_init();
 	game->map.map = ft_init_map(game);
+	game->wall.n = NULL;
+	game->wall.s = NULL;
+	game->wall.w = NULL;
+	game->wall.e = NULL;
+	game->dstr = 0;
 	if (!game->map.map)
 		return (0);
 	if (!game->mlx)

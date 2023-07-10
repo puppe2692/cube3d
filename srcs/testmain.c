@@ -6,7 +6,7 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/27 11:22:34 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/07/03 16:23:32 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/07/10 12:48:58 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,9 @@ int	main(int argc, char **argv)
 		printf("--------------\n");
 		printf("%s\n", game->floor);
 		printf("%s\n", game->input[5]);
+		printf("--------------\n");
+		printf("%f\n", game->plpos.x);
+		printf("%f\n", game->plpos.y);
 
 
 		/* if (ft_game(game) == 0)

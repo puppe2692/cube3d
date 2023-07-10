@@ -6,11 +6,38 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 15:09:01 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/07/04 15:28:45 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/07/10 12:46:34 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cube_includes.h"
+
+void	ft_init_ppos(t_game *game, int *pers, int i, int j)
+{
+	pers[0]++;
+	game->plpos.x = (double)j;
+	game->plpos.y = (double)i;
+	if (game->map.map[i][j] == 'N')
+	{
+		game->dir.x = 0;
+		game->dir.y = -1;
+	}
+	else if (game->map.map[i][j] == 'S')
+	{
+		game->dir.x = 0;
+		game->dir.y = 1;
+	}
+	else if (game->map.map[i][j] == 'E')
+	{
+		game->dir.x = 1;
+		game->dir.y = 0;
+	}
+	else if (game->map.map[i][j] == 'W')
+	{
+		game->dir.x = -1;
+		game->dir.y = 0;
+	}
+}
 
 int	ft_vmapinput(t_game *game)
 {
@@ -32,7 +59,7 @@ int	ft_vmapinput(t_game *game)
 				return (write(2, "Error\n invalid map input", 24), 0);
 			if (game->map.map[i][j] == 'N' || game->map.map[i][j] == 'S'
 				|| game->map.map[i][j] == 'E' || game->map.map[i][j] == 'W')
-				pers++;
+				ft_init_ppos(game, &pers, i, j);
 			if (pers > 1)
 				return (write(2, "Error\n too many players", 23), 0);
 		}
