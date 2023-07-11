@@ -6,7 +6,7 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 15:22:24 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/07/10 15:36:47 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/07/11 16:15:33 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	ft_handle_d(t_game *game)
 	mlx_destroy_window(game->mlx, game->win);
 	game->win = NULL;
 	ft_destroy_image(game);
-	ft_freeall(game);
+	//ft_freeall(game);
 	exit(1);
 }
 

@@ -6,7 +6,7 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 11:11:36 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/07/10 17:19:17 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/07/11 16:17:24 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@
 # include <X11/X.h>
 # include <string.h>
 # include <stdio.h>
+# include <math.h>
 
 
 
@@ -68,6 +69,14 @@ typedef struct s_time
 	double			oldtime;
 }	t_time;
 
+typedef struct s_draw
+{
+	int		lineheight;
+	int		drawstart;
+	int		drawend;
+	int		color;
+}	t_draw;
+
 typedef struct s_game
 {
 	char	**input;
@@ -96,6 +105,7 @@ typedef struct s_game
 	t_pos	mapbox;
 	int		hit;
 	int		side;
+	t_draw	draw;
 }	t_game;
 
 
@@ -136,5 +146,18 @@ int		ft_closespace(t_game *game, int i, int j);
 int		ft_vmapwall_space(t_game *game);
 int		ft_vmapwall(t_game *game);
 int		ft_parsingmap(t_game *game);
+
+//key press
+int		ft_handle_keypress(int keysym, t_game *game);
+int		ft_handle_d(t_game *game);
+
+//exectest
+void	ft_init_value(t_game *game);
+void	ft_init_ray(t_game *game, int x);
+void	ft_init_sidedist(t_game *game);
+void	ft_color(t_game *game, int x);
+void	ft_draw(t_game *game, int x);
+void	ft_rendermap(t_game *game);
+int		ft_execgame(t_game *game);
 
 #endif
