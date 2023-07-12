@@ -6,36 +6,19 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 15:22:24 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/07/12 15:21:56 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/07/12 17:35:38 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cube_includes.h"
 
-int	ft_handle_keypress(int keysym, t_game *game)
-{
-	if (keysym == XK_Escape)
-		ft_handle_d(game);
-	if (keysym == XK_w || keysym == XK_s
-		|| keysym == XK_a || keysym == XK_d)
-	{
-		ft_handle_keymvt(keysym, game);
-		game->bool = 1;
-	}
-	if (keysym == XK_Left || keysym == XK_Right)
-	{
-		ft_handle_cammvt(keysym, game);
-		game->bool = 1;
-	}
-	return (0);
-}
 
 int	ft_handle_d(t_game *game)
 {
 	game->dstr = 1;
 	mlx_destroy_window(game->mlx, game->win);
 	game->win = NULL;
-	ft_destroy_image(game);
+	//ft_destroy_image(game);
 	//ft_freeall(game);
 	exit(1);
 }
@@ -72,30 +55,50 @@ void	ft_handle_keymvt(int keysym, t_game *game)
 {
 	if (keysym == XK_w)
 	{
-		if (game->map.map[int(game->plpos.x + game->dir.x * game->speed.movespeed)][int(game->plpos.y)] == 0) 
+		if (game->map.map[(int)(game->plpos.y)][(int)(game->plpos.x + game->dir.x * game->speed.movespeed)] == 0) 
 			game->plpos.x += game->dir.x * game->speed.movespeed;
-		if (game->map.map[int(game->plpos.x)][int(game->plpos.y + game->dir.y * game->speed.movespeed)] == 0)
+		if (game->map.map[(int)(game->plpos.y + game->dir.y * game->speed.movespeed)][(int)(game->plpos.x)] == 0)
 			game->plpos.y += game->dir.y * game->speed.movespeed;
 	}
 	if (keysym == XK_s)
 	{
-		if (game->map.map[int(game->plpos.x - game->dir.x * game->speed.movespeed)][int(game->plpos.y)] == 0) 
+		if (game->map.map[(int)(game->plpos.y)][(int)(game->plpos.x - game->dir.x * game->speed.movespeed)] == 0) 
 			game->plpos.x -= game->dir.x * game->speed.movespeed;
-		if (game->map.map[int(game->plpos.x)][int(game->plpos.y - game->dir.y * game->speed.movespeed)] == 0)
+		if (game->map.map[(int)(game->plpos.y - game->dir.y * game->speed.movespeed)][(int)(game->plpos.x)] == 0)
 			game->plpos.y -= game->dir.y * game->speed.movespeed;
 	}
 	if (keysym == XK_a)
 	{
-		if (game->map.map[int(game->plpos.x + game->plan.x * game->speed.movespeed)][int(game->plpos.y)] == 0) 
+		if (game->map.map[(int)(game->plpos.y)][(int)(game->plpos.x + game->plan.x * game->speed.movespeed)] == 0) 
 			game->plpos.x += game->plan.x * game->speed.movespeed;
-		if (game->map.map[int(game->plpos.x)][int(game->plpos.y + game->plan.y * game->speed.movespeed)] == 0)
+		if (game->map.map[(int)(game->plpos.y + game->plan.y * game->speed.movespeed)][(int)(game->plpos.x)] == 0)
 			game->plpos.y += game->plan.y * game->speed.movespeed;
 	}
-	if (keysym == XK_d && ft_mvtcond(game, game->ppy, game->ppx + 1) == 1)
+	if (keysym == XK_d)
 	{
-		if (game->map.map[int(game->plpos.x + game->plan.x * game->speed.movespeed)][int(game->plpos.y)] == 0) 
+		if (game->map.map[(int)(game->plpos.y)][(int)(game->plpos.x + game->plan.x * game->speed.movespeed)] == 0) 
 			game->plpos.x += game->plan.x * game->speed.movespeed;
-		if (game->map.map[int(game->plpos.x)][int(game->plpos.y + game->plan.y * game->speed.movespeed)] == 0)
+		if (game->map.map[(int)(game->plpos.y + game->plan.y * game->speed.movespeed)][(int)(game->plpos.x)] == 0)
 			game->plpos.y += game->plan.y * game->speed.movespeed;
 	}
+}
+
+int	ft_handle_keypress(int keysym, t_game *game)
+{
+	if (keysym == XK_Escape)
+		ft_handle_d(game);
+	if (keysym == XK_w || keysym == XK_s
+		|| keysym == XK_a || keysym == XK_d)
+	{
+		ft_handle_keymvt(keysym, game);
+		game->bool = 1;
+		printf("POSITION x : %f\n", game->plpos.x);
+		printf("POSITION y : %f\n", game->plpos.y);
+	}
+	if (keysym == XK_Left || keysym == XK_Right)
+	{
+		ft_handle_cammvt(keysym, game);
+		game->bool = 1;
+	}
+	return (0);
 }

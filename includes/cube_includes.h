@@ -6,7 +6,7 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 11:11:36 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/07/12 15:17:17 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/07/12 15:46:59 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define CUBE_INCLUDES_H
 
 # include "../libft/libft.h"
+# include <math.h>
 # include <string.h>
 # include <unistd.h>
 # include <stdlib.h>
@@ -28,7 +29,6 @@
 # include <X11/X.h>
 # include <string.h>
 # include <stdio.h>
-# include <math.h>
 
 
 
@@ -159,6 +159,8 @@ int		ft_parsingmap(t_game *game);
 //key press
 int		ft_handle_keypress(int keysym, t_game *game);
 int		ft_handle_d(t_game *game);
+void	ft_handle_cammvt(int keysym, t_game *game);
+void	ft_handle_keymvt(int keysym, t_game *game);
 
 //exectest
 void	ft_init_value(t_game *game);
@@ -166,7 +168,7 @@ void	ft_init_ray(t_game *game, int x);
 void	ft_init_sidedist(t_game *game);
 void	ft_color(t_game *game, int x);
 void	ft_draw(t_game *game, int x);
-void	ft_rendermap(t_game *game);
+int		ft_rendermap(t_game *game);
 int		ft_execgame(t_game *game);
 
 #endif

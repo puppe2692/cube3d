@@ -6,7 +6,7 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/27 11:22:34 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/07/10 12:48:58 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/07/12 16:00:40 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,29 +31,28 @@ int	main(int argc, char **argv)
 		i = 0;
 		while (game->map.map[i] != NULL)
 		{
-			printf("%s\n", game->map.map[i]);
+			// printf("%s\n", game->map.map[i]);
 			i++;
 		}
-		printf("--------------\n");
+		// printf("--------------\n");
 		if (ft_parsing(game) == 0)
 		{
 			//ft_freeall(game);
 			return (0);
 		}
-		printf("--------------\n");
-		printf("%s\n", game->floor);
-		printf("%s\n", game->input[5]);
-		printf("--------------\n");
-		printf("%f\n", game->plpos.x);
-		printf("%f\n", game->plpos.y);
+		// printf("--------------\n");
+		// printf("%s\n", game->floor);
+		// printf("%s\n", game->input[5]);
+		// printf("--------------\n");
+		// printf("%f\n", game->plpos.x);
+		// printf("%f\n", game->plpos.y);
 
 
-		/* if (ft_game(game) == 0)
+		if (ft_execgame(game) == 0)
 		{
 			free(game);
 			return (0);
 		}
-		ft_freeall(game);
-		*/
+		//ft_freeall(game);
 	}
 }

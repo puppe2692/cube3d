@@ -6,7 +6,7 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 15:43:24 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/07/03 17:30:33 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/07/12 16:02:18 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ void	ft_hautlarg(t_game *game)
 			game->map.larg = len;
 		i++;
 	}
-	printf("%i \n", game->map.haut);
 }
 
 char	**ft_mapmalloc(t_game *game, char **new)

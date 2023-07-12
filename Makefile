@@ -6,7 +6,7 @@
 #    By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/28 21:18:35 by nwyseur           #+#    #+#              #
-#    Updated: 2023/07/11 16:15:08 by nwyseur          ###   ########.fr        #
+#    Updated: 2023/07/12 15:53:17 by nwyseur          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,7 +49,7 @@ RM			:= rm -f
 all:		${NAME}
 
 ${NAME}:	${OBJS} ${LIBFT} ${MLX}
-			${CC} ${CC_FLAGS} -I${INC_DIR} -I${MLX_INC} -o ${NAME} ${OBJS} ${LIBFT} ${MLX_LIB}
+			${CC} ${CC_FLAGS} -I${INC_DIR} -I${MLX_INC} -o ${NAME} ${OBJS} ${LIBFT} ${MLX_LIB} -lm
 			@echo "$(GREEN)$(NAME) created!$(DEFAULT)"
 
 ${LIBFT}:	
