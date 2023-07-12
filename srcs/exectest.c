@@ -6,7 +6,7 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 11:51:04 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/07/11 16:16:48 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/07/12 15:20:36 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,11 @@ void	ft_init_value(t_game *game)
 	game->plan.y = 0.66;
 	game->time.time = 0;
 	game->time.oldtime = 0;
-	game->res.x = 1280;
-	game->res.y = 720;
+	game->res.x = 640;
+	game->res.y = 480;
+	game->speed.frametime = 33 / 1000;
+	game->speed.movespeed = game->speed.frametime * 5;
+	game->speed.rotspeed = game->speed.frametime * 3;
 }
 
 void	ft_init_ray(t_game *game, int x)
@@ -99,6 +102,8 @@ void	ft_rendermap(t_game *game)
 	int	x;
 
 	x = -1;
+	if (game->bool == 0)
+		return;
 	while (++x < game->res.x)
 	{
 		ft_init_ray(game, x);
@@ -128,7 +133,7 @@ void	ft_rendermap(t_game *game)
 			game->perpwalldist = (game->sidedist.y - game->deltadist.y);
 		ft_draw(game, x);
 	}
-
+	game->bool = 0;
 }
 
 int	ft_execgame(t_game *game)

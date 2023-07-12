@@ -6,7 +6,7 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 11:11:36 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/07/11 16:17:24 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/07/12 15:17:17 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,13 @@ typedef struct s_time
 	double			oldtime;
 }	t_time;
 
+typedef struct s_speed
+{
+	double			frametime;
+	double			movespeed;
+	double			rotspeed;
+}	t_speed;
+
 typedef struct s_draw
 {
 	int		lineheight;
@@ -106,6 +113,8 @@ typedef struct s_game
 	int		hit;
 	int		side;
 	t_draw	draw;
+	t_speed	speed;
+	int		bool;
 }	t_game;
 
 
