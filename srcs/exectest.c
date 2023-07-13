@@ -6,7 +6,7 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 11:51:04 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/07/12 18:41:41 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/07/13 13:20:17 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	ft_init_value(t_game *game)
 	game->time.oldtime = 0;
 	game->res.x = 640;
 	game->res.y = 480;
-	game->speed.frametime = 33 / 1000;
+	game->speed.frametime = (double)(33);
 	game->speed.movespeed = game->speed.frametime * 5;
 	game->speed.rotspeed = game->speed.frametime * 3;
 }
@@ -52,15 +52,18 @@ void	ft_init_sidedist(t_game *game)
 	}
 	else
 	{
+		printf("TAMERE RAYx: %f\n", game->raydir.x);
 		game->step.x = 1;
 		game->sidedist.x = (game->mapbox.x + 1.0 - game->plpos.x)
 			* game->deltadist.x;
+		printf("TAMERE SIDEx: %f\n", game->sidedist.x);
 	}
 	if (game->raydir.y < 0)
 	{
-		printf("MES GROSSES BURNES : %f\n", game->raydir.y);
+		printf("MES GROSSES BURNES RAYy: %f\n", game->raydir.y);
 		game->step.y = -1;
 		game->sidedist.y = (game->plpos.y - game->mapbox.y) * game->deltadist.y;
+		printf("MES GROSSES BURNES SIDEy: %f\n", game->sidedist.y);
 	}
 	else
 	{
@@ -77,7 +80,7 @@ void	ft_color(t_game *game, int x)
 	j = 0;
 	while (j < game->res.y)
 	{
-		if (j >= game->draw.drawstart && j >= game->draw.drawend)
+		if (j >= game->draw.drawstart && j <= game->draw.drawend)
 		{
 			game->draw.color = 0xFF00;
 			if (game->side == 1)
@@ -99,6 +102,10 @@ void	ft_draw(t_game *game, int x)
 	printf("perpwall %f\n", game->perpwalldist);
 	printf("DS %i\n", game->draw.drawstart);
 	printf("DE %i\n", game->draw.drawend);
+	printf("movespeed : %f\n", game->speed.movespeed);
+	printf("rotspeed : %f\n", game->speed.rotspeed);
+	printf("frametime : %f\n", game->speed.frametime);
+	printf("--------------\n");
 	game->draw.drawstart = -game->draw.lineheight / 2 + game->res.y / 2;
 	if (game->draw.drawstart < 0)
 		game->draw.drawstart = 0;
@@ -124,25 +131,33 @@ int	ft_rendermap(t_game *game)
 			//jump to next map square, either in x-direction, or in y-direction
 			if (game->sidedist.x < game->sidedist.y)
 			{
-				//printf("BONJOUR\n");
+				printf("BONJOUR\n");
 				game->sidedist.x += game->deltadist.x;
 				game->mapbox.x += game->step.x;
 				game->side = 0;
 			}
 			else
 			{
-				//printf("AUREVOIR\n");
+				printf("AUREVOIR\n");
 				game->sidedist.y += game->deltadist.y;
 				game->mapbox.y += game->step.y;
 				game->side = 1;
 			}
 			//Check if ray has hit a wall
-			// printf("VALEUR DE X: %i\n", x);
-			// printf("ICI x: %i\n", game->mapbox.x);
-			// printf("LA y: %i\n", game->mapbox.y);
-			if (game->map.map[game->mapbox.y][game->mapbox.x] > 0
-				&& game->map.map[game->mapbox.y][game->mapbox.x] != 'N')
+			printf("VALEUR DE X: %i\n", x);
+			printf("PLPOS x: %f\n", game->plpos.x);
+			printf("PLPOS y: %f\n", game->plpos.y);
+			printf("ICI x: %i\n", game->mapbox.x);
+			printf("LA y: %i\n", game->mapbox.y);
+			if (game->map.map[game->mapbox.y][game->mapbox.x] > '0'
+				&& game->map.map[game->mapbox.y][game->mapbox.x] != 'N') // le superieur a 0 ou '0'
+			{
+				printf("---------------");
+				printf("valeur x: %i\n", game->map.map[game->mapbox.y][game->mapbox.x]);
+				printf("---------------");
 				game->hit = 1;
+				
+			}
 		}
 		if (game->side == 0)
 		{
@@ -163,7 +178,6 @@ int	ft_rendermap(t_game *game)
 int	ft_execgame(t_game *game)
 {
 	ft_init_value(game);
-
 	game->win = mlx_new_window(game->mlx, game->res.x,
 			game->res.y, "Le sang de tes morts Didier!");
 	if (game->win == NULL)
