@@ -6,7 +6,7 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 11:11:36 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/07/12 15:46:59 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/07/14 11:53:11 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ typedef struct s_wall
 	t_img	*s;
 	t_img	*e;
 	t_img	*w;
+	t_img	*texture_to_render;
 }	t_wall;
 
 typedef struct s_map
@@ -104,14 +105,15 @@ typedef struct s_game
 	t_dpos	plan;
 	t_time	time;
 	double	camerax;
-	double	perpwalldist;
 	t_dpos	raydir;
 	t_dpos	sidedist;
 	t_dpos	deltadist;
 	t_pos	step;
 	t_pos	mapbox;
 	int		hit;
+	double	perpwalldist;
 	int		side;
+	t_dpos	texture;
 	t_draw	draw;
 	t_speed	speed;
 	int		bool;

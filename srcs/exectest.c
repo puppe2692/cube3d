@@ -6,11 +6,28 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 11:51:04 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/07/13 13:20:17 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/07/14 11:57:04 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cube_includes.h"
+
+int	ft_map_limits(t_game *game, double x, double y)
+{
+	int	x_round;
+	int	y_round;
+
+	x_round = (int) x;
+	y_round = (int) y;
+	if (y_round < 0 || y_round >= game->map.haut
+		|| x_round < 0 || x_round >= (int) ft_strlen(game->map.map[y_round])
+		|| game->map.map[y_round][x_round] == ' '
+		|| game->map.map[y_round][x_round] == '1')
+	{
+		return (1);
+	}
+	return (0);
+}
 
 void	ft_init_value(t_game *game)
 {
@@ -20,7 +37,7 @@ void	ft_init_value(t_game *game)
 	game->time.oldtime = 0;
 	game->res.x = 640;
 	game->res.y = 480;
-	game->speed.frametime = (double)(33);
+	game->speed.frametime = (double)(60) / (double)(1000);
 	game->speed.movespeed = game->speed.frametime * 5;
 	game->speed.rotspeed = game->speed.frametime * 3;
 }
@@ -30,8 +47,12 @@ void	ft_init_ray(t_game *game, int x)
 	game->camerax = 2 * x / (double)game->res.x - 1;
 	game->raydir.x = game->dir.x + game->plan.x * game->camerax;
 	game->raydir.y = game->dir.y + game->plan.y * game->camerax;
-	game->mapbox.x = game->plpos.x;
-	game->mapbox.y = game->plpos.y;
+	game->mapbox.x = (int)game->plpos.x;
+	game->mapbox.y = (int)game->plpos.y;
+}
+
+void	ft_init_deltadist(t_game *game)
+{
 	if (game->raydir.x == 0)
 		game->deltadist.x = 1e30;
 	else
@@ -43,32 +64,37 @@ void	ft_init_ray(t_game *game, int x)
 	game->hit = 0;
 }
 
-void	ft_init_sidedist(t_game *game)
+void	ft_init_step(t_game *game)
 {
 	if (game->raydir.x < 0)
-	{
 		game->step.x = -1;
-		game->sidedist.x = (game->plpos.x - game->mapbox.x) * game->deltadist.x;
-	}
+	else
+		game->step.x = 1;
+	if (game->raydir.y < 0)
+		game->step.y = -1;
+	else
+		game->step.y = 1;
+}
+
+void	ft_init_sidedist(t_game *game)
+{
+	int	coord_x;
+	int	coord_y;
+
+	coord_x = floor(game->plpos.x);
+	coord_y = floor(game->plpos.y);
+	if (game->raydir.x < 0)
+		game->sidedist.x = (game->plpos.x - coord_x) * game->deltadist.x;
 	else
 	{
-		printf("TAMERE RAYx: %f\n", game->raydir.x);
-		game->step.x = 1;
-		game->sidedist.x = (game->mapbox.x + 1.0 - game->plpos.x)
+		game->sidedist.x = (coord_x + 1.0 - game->plpos.x)
 			* game->deltadist.x;
-		printf("TAMERE SIDEx: %f\n", game->sidedist.x);
 	}
 	if (game->raydir.y < 0)
-	{
-		printf("MES GROSSES BURNES RAYy: %f\n", game->raydir.y);
-		game->step.y = -1;
-		game->sidedist.y = (game->plpos.y - game->mapbox.y) * game->deltadist.y;
-		printf("MES GROSSES BURNES SIDEy: %f\n", game->sidedist.y);
-	}
+		game->sidedist.y = (game->plpos.y - coord_y) * game->deltadist.y;
 	else
 	{
-		game->step.y = 1;
-		game->sidedist.y = (game->mapbox.y + 1.0 - game->plpos.y)
+		game->sidedist.y = (coord_y + 1.0 - game->plpos.y)
 			* game->deltadist.y;
 	}
 }
@@ -84,7 +110,7 @@ void	ft_color(t_game *game, int x)
 		{
 			game->draw.color = 0xFF00;
 			if (game->side == 1)
-				game->draw.color = game->draw.color / 2;
+				game->draw.color = game->draw.color / 3;
 		}
 		else
 			game->draw.color = 0x0000;
@@ -93,26 +119,38 @@ void	ft_color(t_game *game, int x)
 	}
 }
 
-void	ft_draw(t_game *game, int x)
+void	ft_launchray(t_game *game)
 {
-	game->draw.lineheight = (int)(game->res.y / game->perpwalldist);
-	printf("--------------\n");
-	printf("LINE HEIGHT %i\n", game->draw.lineheight);
-	printf("RES %i\n", game->res.y);
-	printf("perpwall %f\n", game->perpwalldist);
-	printf("DS %i\n", game->draw.drawstart);
-	printf("DE %i\n", game->draw.drawend);
-	printf("movespeed : %f\n", game->speed.movespeed);
-	printf("rotspeed : %f\n", game->speed.rotspeed);
-	printf("frametime : %f\n", game->speed.frametime);
-	printf("--------------\n");
-	game->draw.drawstart = -game->draw.lineheight / 2 + game->res.y / 2;
-	if (game->draw.drawstart < 0)
-		game->draw.drawstart = 0;
-	game->draw.drawend = game->draw.lineheight / 2 + game->res.y / 2;
-	if (game->draw.drawend >= game->res.y)
-		game->draw.drawend = game->res.y - 1;
-	ft_color(game, x);
+	while(game->hit == 0)
+	{
+		//jump to next map square, either in x-direction, or in y-direction
+		if (game->sidedist.x < game->sidedist.y)
+		{
+			printf("--BONJOUR--\n");
+			game->sidedist.x += game->deltadist.x;
+			game->mapbox.x += game->step.x;
+			game->side = 0;
+		}
+		else
+		{
+			printf("??AUREVOIR??\n");
+			game->sidedist.y += game->deltadist.y;
+			game->mapbox.y += game->step.y;
+			game->side = 1;
+		}
+		//Check if ray has hit a wall
+		printf("PLPOS x: %f\n", game->plpos.x);
+		printf("PLPOS y: %f\n", game->plpos.y);
+		printf("ICI x: %i\n", game->mapbox.x);
+		printf("LA y: %i\n", game->mapbox.y);
+		if (ft_map_limits(game, game->mapbox.x, game->mapbox.y) == 1)
+		{
+			printf("---------------");
+			printf("valeur x: %i\n", game->map.map[game->mapbox.y][game->mapbox.x]);
+			printf("---------------");
+			game->hit = 1;
+		}
+	}
 }
 
 int	ft_rendermap(t_game *game)
@@ -125,50 +163,23 @@ int	ft_rendermap(t_game *game)
 	while (++x < game->res.x)
 	{
 		ft_init_ray(game, x);
+		ft_init_deltadist(game);
 		ft_init_sidedist(game);
-		while(game->hit == 0)
-		{
-			//jump to next map square, either in x-direction, or in y-direction
-			if (game->sidedist.x < game->sidedist.y)
-			{
-				printf("BONJOUR\n");
-				game->sidedist.x += game->deltadist.x;
-				game->mapbox.x += game->step.x;
-				game->side = 0;
-			}
-			else
-			{
-				printf("AUREVOIR\n");
-				game->sidedist.y += game->deltadist.y;
-				game->mapbox.y += game->step.y;
-				game->side = 1;
-			}
-			//Check if ray has hit a wall
-			printf("VALEUR DE X: %i\n", x);
-			printf("PLPOS x: %f\n", game->plpos.x);
-			printf("PLPOS y: %f\n", game->plpos.y);
-			printf("ICI x: %i\n", game->mapbox.x);
-			printf("LA y: %i\n", game->mapbox.y);
-			if (game->map.map[game->mapbox.y][game->mapbox.x] > '0'
-				&& game->map.map[game->mapbox.y][game->mapbox.x] != 'N') // le superieur a 0 ou '0'
-			{
-				printf("---------------");
-				printf("valeur x: %i\n", game->map.map[game->mapbox.y][game->mapbox.x]);
-				printf("---------------");
-				game->hit = 1;
-				
-			}
-		}
+		ft_init_step(game);
+		ft_launchray(game);
 		if (game->side == 0)
 		{
-			printf("COUILLE\n");
 			game->perpwalldist = (game->sidedist.x - game->deltadist.x);
+			game->texture.x = game->mapbox.y + game->perpwalldist
+				* game->raydir.y;
 		}
 		else
 		{
-			printf("TESTICULE : %f\n", game->deltadist.y);
 			game->perpwalldist = (game->sidedist.y - game->deltadist.y);
+			game->texture.x = game->mapbox.x + game->perpwalldist
+				* game->raydir.x; // ici
 		}
+		game->texture.x -= floor(game->texture.x); // ici
 		ft_draw(game, x);
 	}
 	game->bool = 0;

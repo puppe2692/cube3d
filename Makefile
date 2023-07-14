@@ -6,7 +6,7 @@
 #    By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/28 21:18:35 by nwyseur           #+#    #+#              #
-#    Updated: 2023/07/12 15:53:17 by nwyseur          ###   ########.fr        #
+#    Updated: 2023/07/14 11:39:42 by nwyseur          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,8 @@ SRCS_FILES	:= testmain.c \
 				parsing_input_2.c \
 				parsing_map.c \
 				exectest.c \
-				keypress.c 
+				keypress.c \
+				draw.c
 
 HEADER_FILE	:= cube_includes.h
 
