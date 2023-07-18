@@ -101,3 +101,5 @@ void	ft_color(t_game *game, int x)
 		j++;
 	}
 }
+
+|| x_round >= (int) ft_strlen(game->map.map[y_round])

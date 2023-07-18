@@ -6,7 +6,7 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 11:11:36 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/07/18 12:28:22 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/07/18 13:53:19 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@
 # include <string.h>
 # include <stdio.h>
 
-
+# define PLAN 0.66
 
 typedef struct s_wall
 {

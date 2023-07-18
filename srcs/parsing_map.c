@@ -6,7 +6,7 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 15:09:01 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/07/13 12:17:09 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/07/18 13:44:56 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,21 +21,29 @@ void	ft_init_ppos(t_game *game, int *pers, int i, int j)
 	{
 		game->dir.x = 0;
 		game->dir.y = -1;
+		game->plan.x = PLAN;
+		game->plan.y = 0;
 	}
 	else if (game->map.map[i][j] == 'S')
 	{
 		game->dir.x = 0;
 		game->dir.y = 1;
+		game->plan.x = -PLAN;
+		game->plan.y = 0;
 	}
 	else if (game->map.map[i][j] == 'E')
 	{
 		game->dir.x = 1;
 		game->dir.y = 0;
+		game->plan.x = 0;
+		game->plan.y = -PLAN;
 	}
 	else if (game->map.map[i][j] == 'W')
 	{
 		game->dir.x = -1;
 		game->dir.y = 0;
+		game->plan.x = 0;
+		game->plan.y = PLAN;
 	}
 }
 

@@ -6,7 +6,7 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 11:51:04 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/07/18 12:58:09 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/07/18 14:08:44 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	ft_map_limits(t_game *game, double x, double y)
 	x_round = (int) x;
 	y_round = (int) y;
 	if (y_round < 0 || y_round >= game->map.haut
-		|| x_round < 0 || x_round >= (int) ft_strlen(game->map.map[y_round])
+		|| x_round < 0
 		|| game->map.map[y_round][x_round] == ' '
 		|| game->map.map[y_round][x_round] == '1')
 	{
@@ -31,12 +31,10 @@ int	ft_map_limits(t_game *game, double x, double y)
 
 void	ft_init_value(t_game *game)
 {
-	game->plan.x = 0;
-	game->plan.y = 0.66;
 	game->time.time = 0;
 	game->time.oldtime = 0;
-	game->res.x = 640;
-	game->res.y = 480;
+	game->res.x = 1280;
+	game->res.y = 720;
 	game->speed.frametime = (double)(60) / (double)(1000);
 	game->speed.movespeed = game->speed.frametime * 5;
 	game->speed.rotspeed = game->speed.frametime * 3;
@@ -106,30 +104,19 @@ void	ft_launchray(t_game *game)
 		//jump to next map square, either in x-direction, or in y-direction
 		if (game->sidedist.x < game->sidedist.y)
 		{
-			printf("--BONJOUR--\n");
 			game->sidedist.x += game->deltadist.x;
 			game->mapbox.x += game->step.x;
 			game->side = 0;
 		}
 		else
 		{
-			printf("??AUREVOIR??\n");
 			game->sidedist.y += game->deltadist.y;
 			game->mapbox.y += game->step.y;
 			game->side = 1;
 		}
 		//Check if ray has hit a wall
-		printf("PLPOS x: %f\n", game->plpos.x);
-		printf("PLPOS y: %f\n", game->plpos.y);
-		printf("ICI x: %i\n", game->mapbox.x);
-		printf("LA y: %i\n", game->mapbox.y);
 		if (ft_map_limits(game, game->mapbox.x, game->mapbox.y) == 1)
-		{
-			printf("---------------");
-			printf("valeur x: %i\n", game->map.map[game->mapbox.y][game->mapbox.x]);
-			printf("---------------");
 			game->hit = 1;
-		}
 	}
 }
 
