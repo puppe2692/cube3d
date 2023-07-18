@@ -103,3 +103,38 @@ void	ft_color(t_game *game, int x)
 }
 
 || x_round >= (int) ft_strlen(game->map.map[y_round])
+
+
+
+
+void	ft_handle_keymvt(int keysym, t_game *game)
+{
+	if (keysym == XK_w)
+	{
+		if (game->map.map[(int)(game->plpos.x + game->dir.x * game->speed.movespeed)][(int)(game->plpos.y)] != '1') 
+			game->plpos.x += game->dir.x * game->speed.movespeed;
+		if (game->map.map[(int)(game->plpos.x)][(int)(game->plpos.y + game->dir.y * game->speed.movespeed)] != '1')
+			game->plpos.y += game->dir.y * game->speed.movespeed;
+	}
+	if (keysym == XK_s)
+	{
+		if (game->map.map[(int)(game->plpos.x - game->dir.x * game->speed.movespeed)][(int)(game->plpos.y)] != '1') 
+			game->plpos.x -= game->dir.x * game->speed.movespeed;
+		if (game->map.map[(int)(game->plpos.x)][(int)(game->plpos.y - game->dir.y * game->speed.movespeed)] != '1')
+			game->plpos.y -= game->dir.y * game->speed.movespeed;
+	}
+	if (keysym == XK_a)
+	{
+		if (game->map.map[(int)(game->plpos.x + game->plan.x * game->speed.movespeed)][(int)(game->plpos.y)] != '1') 
+			game->plpos.x -= game->plan.x * game->speed.movespeed;
+		if (game->map.map[(int)(game->plpos.x)][(int)(game->plpos.y + game->plan.y * game->speed.movespeed)] != '1')
+			game->plpos.y -= game->plan.y * game->speed.movespeed;
+	}
+	if (keysym == XK_d)
+	{
+		if (game->map.map[(int)(game->plpos.x + game->plan.x * game->speed.movespeed)][(int)(game->plpos.y)] != '1') 
+			game->plpos.x += game->plan.x * game->speed.movespeed;
+		if (game->map.map[(int)(game->plpos.x)][(int)(game->plpos.y + game->plan.y * game->speed.movespeed)] != '1')
+			game->plpos.y += game->plan.y * game->speed.movespeed;
+	}
+}

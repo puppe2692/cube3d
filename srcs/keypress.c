@@ -6,7 +6,7 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 15:22:24 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/07/18 13:40:24 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/07/18 14:15:11 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,30 +55,30 @@ void	ft_handle_keymvt(int keysym, t_game *game)
 {
 	if (keysym == XK_w)
 	{
-		if (game->map.map[(int)(game->plpos.x + game->dir.x * game->speed.movespeed)][(int)(game->plpos.y)] != '1') 
+		if (game->map.map[(int)(game->plpos.y)][(int)(game->plpos.x + game->dir.x * game->speed.movespeed)] != '1') 
 			game->plpos.x += game->dir.x * game->speed.movespeed;
-		if (game->map.map[(int)(game->plpos.x)][(int)(game->plpos.y + game->dir.y * game->speed.movespeed)] != '1')
+		if (game->map.map[(int)(game->plpos.y + game->dir.y * game->speed.movespeed)][(int)(game->plpos.x)] != '1')
 			game->plpos.y += game->dir.y * game->speed.movespeed;
 	}
 	if (keysym == XK_s)
 	{
-		if (game->map.map[(int)(game->plpos.x - game->dir.x * game->speed.movespeed)][(int)(game->plpos.y)] != '1') 
+		if (game->map.map[(int)(game->plpos.y)][(int)(game->plpos.x - game->dir.x * game->speed.movespeed)] != '1') 
 			game->plpos.x -= game->dir.x * game->speed.movespeed;
-		if (game->map.map[(int)(game->plpos.x)][(int)(game->plpos.y - game->dir.y * game->speed.movespeed)] != '1')
+		if (game->map.map[(int)(game->plpos.y - game->dir.y * game->speed.movespeed)][(int)(game->plpos.x)] != '1')
 			game->plpos.y -= game->dir.y * game->speed.movespeed;
 	}
 	if (keysym == XK_a)
 	{
-		if (game->map.map[(int)(game->plpos.x + game->plan.x * game->speed.movespeed)][(int)(game->plpos.y)] != '1') 
+		if (game->map.map[(int)(game->plpos.y)][(int)(game->plpos.x + game->plan.x * game->speed.movespeed)] != '1') 
 			game->plpos.x -= game->plan.x * game->speed.movespeed;
-		if (game->map.map[(int)(game->plpos.x)][(int)(game->plpos.y + game->plan.y * game->speed.movespeed)] != '1')
+		if (game->map.map[(int)(game->plpos.y + game->plan.y * game->speed.movespeed)][(int)(game->plpos.x)] != '1')
 			game->plpos.y -= game->plan.y * game->speed.movespeed;
 	}
 	if (keysym == XK_d)
 	{
-		if (game->map.map[(int)(game->plpos.x + game->plan.x * game->speed.movespeed)][(int)(game->plpos.y)] != '1') 
+		if (game->map.map[(int)(game->plpos.y)][(int)(game->plpos.x + game->plan.x * game->speed.movespeed)] != '1') 
 			game->plpos.x += game->plan.x * game->speed.movespeed;
-		if (game->map.map[(int)(game->plpos.x)][(int)(game->plpos.y + game->plan.y * game->speed.movespeed)] != '1')
+		if (game->map.map[(int)(game->plpos.y + game->plan.y * game->speed.movespeed)][(int)(game->plpos.x)] != '1')
 			game->plpos.y += game->plan.y * game->speed.movespeed;
 	}
 }

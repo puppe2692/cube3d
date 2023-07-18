@@ -6,7 +6,7 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 11:51:04 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/07/18 14:08:44 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/07/18 14:12:10 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	ft_map_limits(t_game *game, double x, double y)
 	x_round = (int) x;
 	y_round = (int) y;
 	if (y_round < 0 || y_round >= game->map.haut
-		|| x_round < 0
+		|| x_round < 0 || x_round >= (int) ft_strlen(game->map.map[y_round])
 		|| game->map.map[y_round][x_round] == ' '
 		|| game->map.map[y_round][x_round] == '1')
 	{
