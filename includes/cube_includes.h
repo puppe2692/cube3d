@@ -6,7 +6,7 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 11:11:36 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/07/14 11:53:11 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/07/18 12:28:22 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -165,12 +165,23 @@ void	ft_handle_cammvt(int keysym, t_game *game);
 void	ft_handle_keymvt(int keysym, t_game *game);
 
 //exectest
+int		ft_map_limits(t_game *game, double x, double y);
 void	ft_init_value(t_game *game);
 void	ft_init_ray(t_game *game, int x);
+void	ft_init_deltadist(t_game *game);
+void	ft_init_step(t_game *game);
 void	ft_init_sidedist(t_game *game);
-void	ft_color(t_game *game, int x);
-void	ft_draw(t_game *game, int x);
+void	ft_launchray(t_game *game);
 int		ft_rendermap(t_game *game);
 int		ft_execgame(t_game *game);
+
+//draw
+void	ft_draw(t_game *game, int x);
+void	ft_texture_to_render(t_game *game);
+void	ft_wall_setting(t_game *game);
+void	ft_render_line(t_game *game, int x);
+void	ft_data_init(t_game *game, double *data);
+int		ft_get_pix_color(t_game *game);
+int		ft_get_rgb_color(char **color);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 11:51:04 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/07/14 11:57:04 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/07/18 12:58:09 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,26 +96,6 @@ void	ft_init_sidedist(t_game *game)
 	{
 		game->sidedist.y = (coord_y + 1.0 - game->plpos.y)
 			* game->deltadist.y;
-	}
-}
-
-void	ft_color(t_game *game, int x)
-{
-	int	j;
-
-	j = 0;
-	while (j < game->res.y)
-	{
-		if (j >= game->draw.drawstart && j <= game->draw.drawend)
-		{
-			game->draw.color = 0xFF00;
-			if (game->side == 1)
-				game->draw.color = game->draw.color / 3;
-		}
-		else
-			game->draw.color = 0x0000;
-		mlx_pixel_put(game->mlx, game->win, x, j, game->draw.color);
-		j++;
 	}
 }
 

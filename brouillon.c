@@ -81,3 +81,23 @@ void	ft_handle_keymvt(int keysym, t_game *game)
 		game->draw.drawend = game->res.y - 1;
 	ft_color(game, x);
 }
+
+void	ft_color(t_game *game, int x)
+{
+	int	j;
+
+	j = 0;
+	while (j < game->res.y)
+	{
+		if (j >= game->draw.drawstart && j <= game->draw.drawend)
+		{
+			game->draw.color = 0xFF00;
+			if (game->side == 1)
+				game->draw.color = game->draw.color / 3;
+		}
+		else
+			game->draw.color = 0x0000;
+		mlx_pixel_put(game->mlx, game->win, x, j, game->draw.color);
+		j++;
+	}
+}
