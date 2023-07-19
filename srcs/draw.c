@@ -6,7 +6,7 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/14 11:38:37 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/07/14 12:15:55 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/07/19 16:26:40 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,5 +63,4 @@ void	ft_draw(t_game *game, int x)
 		else
 			ft_render_line(game, x);
 	}
-
 }

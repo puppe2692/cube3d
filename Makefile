@@ -6,7 +6,7 @@
 #    By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/28 21:18:35 by nwyseur           #+#    #+#              #
-#    Updated: 2023/07/18 12:19:01 by nwyseur          ###   ########.fr        #
+#    Updated: 2023/07/19 16:03:26 by nwyseur          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,10 +19,14 @@ SRCS_FILES	:= testmain.c \
 				parsing_input.c \
 				parsing_input_2.c \
 				parsing_map.c \
-				exectest.c \
+				parsing_map_2.c \
+				init_casting.c \
+				init_casting_2.c \
 				keypress.c \
 				draw.c \
 				draw_suite.c \
+				free_mngmt.c \
+
 
 HEADER_FILE	:= cube_includes.h
 

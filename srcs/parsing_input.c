@@ -6,7 +6,7 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 14:00:19 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/07/04 16:39:31 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/07/19 16:54:09 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int	ft_vinput(t_game *game)
 	if (ft_vwronginput(game) == 0)
 	{
 		write(2, "Error\n invalid input", 20);
-		return (0);
+		return (0); 
 	}
 	if (game->vinputnbr != 6)
 	{
@@ -95,12 +95,12 @@ int	ft_vimage(t_game *game)
 int	ft_parsing(t_game *game)
 {
 	if (ft_vinput(game) == 0)
-		return (0);
+		return (0); // ici pour pour erreur
 	if (ft_vimage(game) == 0)
-		return (0);
-	if (ft_vcolor(game) == 0)
-		return (0);
+		return (0); // ici pour pour erreur
+	if (ft_vcolor(game, -1) == 0)
+		return (0); // ici pour pour erreur
 	if (ft_parsingmap(game) == 0)
-		return (0);
+		return (0); // ici pour pour erreur
 	return (1);
 }

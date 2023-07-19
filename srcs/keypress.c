@@ -6,81 +6,78 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 15:22:24 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/07/18 14:15:11 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/07/19 16:45:06 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cube_includes.h"
 
-
-int	ft_handle_d(t_game *game)
-{
-	game->dstr = 1;
-	mlx_destroy_window(game->mlx, game->win);
-	game->win = NULL;
-	//ft_destroy_image(game);
-	//ft_freeall(game);
-	exit(1);
-}
-
-void	ft_handle_cammvt(int keysym, t_game *game)
+void	ft_rot(t_game *game, double rotspeed)
 {
 	double	olddirx;
 	double	oldplanex;
 
+	olddirx = game->dir.x;
+	game->dir.x = game->dir.x * cos(rotspeed)
+		- game->dir.y * sin(rotspeed);
+	game->dir.y = olddirx * sin(rotspeed)
+		+ game->dir.y * cos(rotspeed);
+	oldplanex = game->plan.x;
+	game->plan.x = game->plan.x * cos(rotspeed)
+		- game->plan.y * sin(rotspeed);
+	game->plan.y = oldplanex * sin(rotspeed)
+		+ game->plan.y * cos(rotspeed);
+}
+
+void	ft_mvt(t_game *game, double axex, double axey, int keysym)
+{
+	if (keysym == XK_w || keysym == XK_d)
+	{
+		if (game->map.map[(int)(game->plpos.y)]
+			[(int)(game->plpos.x + axex * game->speed.movespeed)] != '1')
+			game->plpos.x = game->plpos.x + axex * game->speed.movespeed;
+		if (game->map.map[(int)(game->plpos.y + axey * game->speed.movespeed)]
+			[(int)(game->plpos.x)] != '1')
+			game->plpos.y = game->plpos.y + axey * game->speed.movespeed;
+	}
+}
+
+void	ft_handle_cammvt(int keysym, t_game *game)
+{
 	if (keysym == XK_Left)
 	{
-		//both camera direction and camera plane must be rotated
-		olddirx = game->dir.x;
-		game->dir.x = game->dir.x * cos(-game->speed.rotspeed) - game->dir.y * sin(-game->speed.rotspeed);
-		game->dir.y = olddirx * sin(-game->speed.rotspeed) + game->dir.y * cos(-game->speed.rotspeed);
-		oldplanex = game->plan.x;
-		game->plan.x = game->plan.x * cos(-game->speed.rotspeed) - game->plan.y * sin(-game->speed.rotspeed);
-		game->plan.y = oldplanex * sin(-game->speed.rotspeed) + game->plan.y * cos(-game->speed.rotspeed);
+		ft_rot(game, -game->speed.rotspeed);
 	}
-	//rotate to the left
 	if (keysym == XK_Right)
 	{
-		//both camera direction and camera plane must be rotated
-		olddirx = game->dir.x;
-		game->dir.x = game->dir.x * cos(game->speed.rotspeed) - game->dir.y * sin(game->speed.rotspeed);
-		game->dir.y = olddirx * sin(game->speed.rotspeed) + game->dir.y * cos(game->speed.rotspeed);
-		oldplanex = game->plan.x;
-		game->plan.x = game->plan.x * cos(game->speed.rotspeed) - game->plan.y * sin(game->speed.rotspeed);
-		game->plan.y = oldplanex * sin(game->speed.rotspeed) + game->plan.y * cos(game->speed.rotspeed);
+		ft_rot(game, game->speed.rotspeed);
 	}
 }
 
 void	ft_handle_keymvt(int keysym, t_game *game)
 {
 	if (keysym == XK_w)
-	{
-		if (game->map.map[(int)(game->plpos.y)][(int)(game->plpos.x + game->dir.x * game->speed.movespeed)] != '1') 
-			game->plpos.x += game->dir.x * game->speed.movespeed;
-		if (game->map.map[(int)(game->plpos.y + game->dir.y * game->speed.movespeed)][(int)(game->plpos.x)] != '1')
-			game->plpos.y += game->dir.y * game->speed.movespeed;
-	}
+		ft_mvt(game, game->dir.x, game->dir.y, keysym);
 	if (keysym == XK_s)
 	{
-		if (game->map.map[(int)(game->plpos.y)][(int)(game->plpos.x - game->dir.x * game->speed.movespeed)] != '1') 
+		if (game->map.map[(int)(game->plpos.y)]
+			[(int)(game->plpos.x - game->dir.x * game->speed.movespeed)] != '1')
 			game->plpos.x -= game->dir.x * game->speed.movespeed;
-		if (game->map.map[(int)(game->plpos.y - game->dir.y * game->speed.movespeed)][(int)(game->plpos.x)] != '1')
+		if (game->map.map[(int)(game->plpos.y - game->dir.y
+				* game->speed.movespeed)][(int)(game->plpos.x)] != '1')
 			game->plpos.y -= game->dir.y * game->speed.movespeed;
 	}
 	if (keysym == XK_a)
 	{
-		if (game->map.map[(int)(game->plpos.y)][(int)(game->plpos.x + game->plan.x * game->speed.movespeed)] != '1') 
+		if (game->map.map[(int)(game->plpos.y)][(int)(game->plpos.x
+			+ game->plan.x * game->speed.movespeed)] != '1')
 			game->plpos.x -= game->plan.x * game->speed.movespeed;
-		if (game->map.map[(int)(game->plpos.y + game->plan.y * game->speed.movespeed)][(int)(game->plpos.x)] != '1')
+		if (game->map.map[(int)(game->plpos.y + game->plan.y
+				* game->speed.movespeed)][(int)(game->plpos.x)] != '1')
 			game->plpos.y -= game->plan.y * game->speed.movespeed;
 	}
 	if (keysym == XK_d)
-	{
-		if (game->map.map[(int)(game->plpos.y)][(int)(game->plpos.x + game->plan.x * game->speed.movespeed)] != '1') 
-			game->plpos.x += game->plan.x * game->speed.movespeed;
-		if (game->map.map[(int)(game->plpos.y + game->plan.y * game->speed.movespeed)][(int)(game->plpos.x)] != '1')
-			game->plpos.y += game->plan.y * game->speed.movespeed;
-	}
+		ft_mvt(game, game->plan.x, game->plan.y, keysym);
 }
 
 int	ft_handle_keypress(int keysym, t_game *game)
@@ -92,8 +89,6 @@ int	ft_handle_keypress(int keysym, t_game *game)
 	{
 		ft_handle_keymvt(keysym, game);
 		game->bool = 1;
-		printf("POSITION x : %f\n", game->plpos.x);
-		printf("POSITION y : %f\n", game->plpos.y);
 	}
 	if (keysym == XK_Left || keysym == XK_Right)
 	{

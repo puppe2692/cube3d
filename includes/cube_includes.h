@@ -6,7 +6,7 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 11:11:36 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/07/18 13:53:19 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/07/19 16:10:45 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,15 +148,19 @@ void	ft_convertdir(t_game *game);
 void	ft_convertcolor(t_game *game);
 int		ft_vcolor_suite(char **hex);
 int		ft_nbrcolor(t_game *game);
-int		ft_vcolor(t_game *game);
+int		ft_vcolor(t_game *game, int i);
 
 //Parsing_Map
-int		ft_vmapinput(t_game *game);
+int		ft_vmapinput(t_game *game, int i);
 int		ft_vmapwall_2(t_game *game, int i, int j);
-int		ft_closespace(t_game *game, int i, int j);
-int		ft_vmapwall_space(t_game *game);
 int		ft_vmapwall(t_game *game);
 int		ft_parsingmap(t_game *game);
+
+//Parsing_Map_2
+void	ft_init_dir(t_game *game, double x, double y);
+void	ft_init_plan(t_game *game, double x, double y);
+int		ft_closespace(t_game *game, int i, int j);
+int		ft_vmapwall_space(t_game *game);
 
 //key press
 int		ft_handle_keypress(int keysym, t_game *game);
