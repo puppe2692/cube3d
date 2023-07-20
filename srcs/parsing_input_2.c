@@ -6,13 +6,13 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/27 14:29:46 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/07/19 16:53:31 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/07/20 12:24:25 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cube_includes.h"
 
-void	ft_convertdir(t_game *game)
+int	ft_convertdir(t_game *game)
 {
 	game->wall.no = ft_substr(game->wall.no, ft_spacecount(game->wall.no),
 			ft_strlen(game->wall.no) - (ft_spacecount(game->wall.no) + 1));
@@ -22,16 +22,21 @@ void	ft_convertdir(t_game *game)
 			ft_strlen(game->wall.we) - (ft_spacecount(game->wall.we) + 1));
 	game->wall.ea = ft_substr(game->wall.ea, ft_spacecount(game->wall.ea),
 			ft_strlen(game->wall.ea) - (ft_spacecount(game->wall.ea) + 1));
-	// ici si un return NULL
+	if (game->wall.no == NULL || game->wall.so == NULL
+		|| game->wall.ea == NULL || game->wall.we == NULL)
+		return (ft_freedir(game), 0);
+	return (1);
 }
 
-void	ft_convertcolor(t_game *game)
+int	ft_convertcolor(t_game *game)
 {
 	game->floor = ft_substr(game->floor, ft_spacecount(game->floor),
 			ft_strlen(game->floor) - (ft_spacecount(game->floor) + 1));
 	game->roof = ft_substr(game->roof, ft_spacecount(game->roof),
 			ft_strlen(game->roof) - (ft_spacecount(game->roof) + 1));
-	// ici si un return NULL
+	if (game->floor == NULL || game->roof == NULL)
+		return (ft_freecol(game), 0);
+	return (1);
 }
 
 int	ft_vcolor_suite(char **hex)
@@ -90,14 +95,15 @@ int	ft_vcolor(t_game *game, int i)
 	int	j;
 	int	k;
 
-	ft_convertcolor(game); // ici si return NULL return 0
+	if (ft_convertcolor(game) == 0)
+		return (write(2, "Error\n color format", 19), 0);
 	game->fcol = ft_split(game->floor, ',');
 	game->rcol = ft_split(game->roof, ',');
 	if (ft_nbrcolor(game) == 0 || ft_vcolor_suite(game->fcol) == 0
 		|| ft_vcolor_suite(game->rcol) == 0)
 	{
-		write(2, "Error\n color format", 19); 
-		return (0);  // ici pour pour erreur
+		write(2, "Error\n color format", 19);
+		return (0);
 	}
 	while (++i < 3)
 	{
@@ -107,7 +113,7 @@ int	ft_vcolor(t_game *game, int i)
 			|| game->rcol[i] == NULL || game->fcol[i] == NULL)
 		{
 			write(2, "Error\n color format", 19);
-			return (0); // ici pour pour erreur
+			return (0);
 		}
 	}
 	return (1);

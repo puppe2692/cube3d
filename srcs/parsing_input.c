@@ -6,7 +6,7 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 14:00:19 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/07/19 16:54:09 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/07/20 13:38:16 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int	ft_vinput(t_game *game)
 	if (ft_vwronginput(game) == 0)
 	{
 		write(2, "Error\n invalid input", 20);
-		return (0); 
+		return (0);
 	}
 	if (game->vinputnbr != 6)
 	{
@@ -74,7 +74,8 @@ int	ft_vimage(t_game *game)
 	int	w;
 	int	h;
 
-	ft_convertdir(game);
+	if (ft_convertdir(game) == 0)
+		return (write(2, "Error\n image upload", 19), 0);
 	game->wall.n = mlx_xpm_file_to_image(game->mlx,
 			game->wall.no, &w, &h);
 	game->wall.s = mlx_xpm_file_to_image(game->mlx,
@@ -95,12 +96,12 @@ int	ft_vimage(t_game *game)
 int	ft_parsing(t_game *game)
 {
 	if (ft_vinput(game) == 0)
-		return (0); // ici pour pour erreur
+		return (ft_freepasall(game, 2), 0);
 	if (ft_vimage(game) == 0)
-		return (0); // ici pour pour erreur
+		return (ft_freepasall(game, 1), 0);
 	if (ft_vcolor(game, -1) == 0)
-		return (0); // ici pour pour erreur
+		return (ft_freeall(game), 0);
 	if (ft_parsingmap(game) == 0)
-		return (0); // ici pour pour erreur
+		return (0);
 	return (1);
 }

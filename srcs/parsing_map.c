@@ -6,7 +6,7 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 15:09:01 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/07/19 16:54:35 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/07/20 11:56:18 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,8 +123,8 @@ int	ft_vmapwall(t_game *game)
 int	ft_parsingmap(t_game *game)
 {
 	if (ft_vmapinput(game, -1) == 0)
-		return (0); // ici pour pour erreur
+		return (ft_freeall(game), 0);
 	if (ft_vmapwall(game) == 0)
-		return (0); // ici pour pour erreur
+		return (ft_freeall(game), 0);
 	return (1);
 }

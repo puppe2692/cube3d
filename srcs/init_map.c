@@ -6,7 +6,7 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 15:43:24 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/07/19 16:49:31 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/07/20 11:25:32 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ char	**ft_mapmalloc(t_game *game, char **new)
 	{
 		new[i] = ft_calloc((game->map.larg + 1), sizeof(char));
 		if (!new[i])
-			return (NULL); // ici free management return (free de ce qui est creer + 0)
+			return (ft_dblstrfree(new, i), NULL);
 		new[i][game->map.larg] = '\0';
 	}
 	i = -1;

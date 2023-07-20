@@ -6,7 +6,7 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 11:14:12 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/07/19 16:54:22 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/07/20 11:56:46 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,10 +56,7 @@ int	ft_vmapwall_space(t_game *game)
 			if (game->map.map[i][j] == ' ')
 			{
 				if (ft_closespace(game, i, j) == 0)
-				{
-					printf("%i,  %i,  '%c'\n", i, j, game->map.map[i][j]);
-					return (write(2, "Error\n invalid map space", 24), 0); // ici pour pour erreur
-				}
+					return (write(2, "Error\n invalid map space", 24), 0);
 			}
 		}
 	}

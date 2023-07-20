@@ -6,7 +6,7 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 11:11:36 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/07/19 16:10:45 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/07/20 13:36:04 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,8 +144,8 @@ int		ft_vimage(t_game *game);
 int		ft_parsing(t_game *game);
 
 //Parsing_2
-void	ft_convertdir(t_game *game);
-void	ft_convertcolor(t_game *game);
+int		ft_convertdir(t_game *game);
+int		ft_convertcolor(t_game *game);
 int		ft_vcolor_suite(char **hex);
 int		ft_nbrcolor(t_game *game);
 int		ft_vcolor(t_game *game, int i);
@@ -164,7 +164,6 @@ int		ft_vmapwall_space(t_game *game);
 
 //key press
 int		ft_handle_keypress(int keysym, t_game *game);
-int		ft_handle_d(t_game *game);
 void	ft_handle_cammvt(int keysym, t_game *game);
 void	ft_handle_keymvt(int keysym, t_game *game);
 
@@ -187,5 +186,16 @@ void	ft_render_line(t_game *game, int x);
 void	ft_data_init(t_game *game, double *data);
 int		ft_get_pix_color(t_game *game);
 int		ft_get_rgb_color(char **color);
+
+//free_mngmt
+void	ft_destroy_image(t_game *game);
+void	ft_dblstrfree(char **sstr, int j);
+void	ft_freeall(t_game *game);
+void	ft_freepasall(t_game *game, int i);
+void	ft_freedir(t_game *game);
+void	ft_freecol(t_game *game);
+void	ft_destroy_game(t_game *game);
+int		ft_handle_d(t_game *game);
+void	ft_freesplit(char **sstr);
 
 #endif

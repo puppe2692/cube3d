@@ -6,7 +6,7 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 11:51:04 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/07/19 16:45:49 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/07/20 12:47:23 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,5 @@ int	ft_execgame(t_game *game)
 	mlx_hook(game->win, DestroyNotify, StructureNotifyMask, &ft_handle_d, game);
 	mlx_loop_hook(game->mlx, &ft_rendermap, game);
 	mlx_loop(game->mlx);
-	// ici ft_destroy_image(game);
 	return (1);
 }
