@@ -6,7 +6,7 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 11:51:04 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/07/20 12:47:23 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/07/21 12:33:21 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,13 +55,13 @@ void	ft_walldist(t_game *game)
 	if (game->side == 0)
 	{
 		game->perpwalldist = (game->sidedist.x - game->deltadist.x);
-		game->texture.x = game->mapbox.y + game->perpwalldist
+		game->texture.x = game->plpos.y + game->perpwalldist
 			* game->raydir.y;
 	}
 	else
 	{
 		game->perpwalldist = (game->sidedist.y - game->deltadist.y);
-		game->texture.x = game->mapbox.x + game->perpwalldist
+		game->texture.x = game->plpos.x + game->perpwalldist
 			* game->raydir.x;
 	}
 	game->texture.x -= floor(game->texture.x);

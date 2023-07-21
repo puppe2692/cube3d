@@ -6,7 +6,7 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 11:11:36 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/07/20 13:36:04 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/07/21 12:46:35 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,11 +114,11 @@ typedef struct s_game
 	double	perpwalldist;
 	int		side;
 	t_dpos	texture;
+	double	wallx;
 	t_draw	draw;
 	t_speed	speed;
 	int		bool;
 }	t_game;
-
 
 //Main
 int		ft_cub(char *str);

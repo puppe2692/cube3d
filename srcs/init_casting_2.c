@@ -6,7 +6,7 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 11:06:37 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/07/20 12:59:25 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/07/21 12:54:45 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ void	ft_init_value(t_game *game)
 {
 	game->time.time = 0;
 	game->time.oldtime = 0;
-	game->res.x = 640;
-	game->res.y = 480;
+	game->res.x = 1280;
+	game->res.y = 720;
 	game->speed.frametime = (double)(60) / (double)(1000);
 	game->speed.movespeed = game->speed.frametime * 5;
 	game->speed.rotspeed = game->speed.frametime * 3;

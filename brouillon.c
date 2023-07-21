@@ -196,3 +196,30 @@ void	ft_handle_keymvt(int keysym, t_game *game)
 			game->plpos.y += game->plan.y * game->speed.movespeed;
 	}
 }
+
+
+void    ft_complete_algo_texture(t_game game, t_algo *algo)
+{
+    algo->img_tex = ft_get_img(game, *algo);
+    if (algo->side == 0)
+        algo->wallx = algo->pos.y + algo->perpwalldist * algo->raydir.y;
+    else
+        algo->wallx = algo->pos.x + algo->perpwalldist * algo->raydir.x;
+    algo->wallx -= (int) floor((algo->wallx));
+    algo->step_d = 1.0 * algo->img_tex.height / algo->lineheight;
+    algo->texx = (int)(algo->wallx * (double)algo->img_tex.width);
+
+    if (algo->side == 0 && algo->raydir.x > 0)
+        algo->texx = algo->img_tex.width - algo->texx - 1;
+    if (algo->side == 1 && algo->raydir.y < 0)
+        algo->texx = algo->img_tex.width - algo->texx - 1;
+		
+    algo->texpos = (algo->drawstart - WIN_HEIGHT / 2 + algo->lineheight / 2)
+        * algo->step_d;
+}
+
+	if (game->side == 0 && game->raydir.x > 0)
+		game->texture.x = game->wall.texture_to_render->width - game->texture.x - 1; // ici
+	if (game->side == 1 && game->raydir.y < 0)
+		game->texture.x = game->wall.texture_to_render->width - game->texture.x - 1;
+		
