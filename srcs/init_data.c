@@ -6,7 +6,7 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 12:36:01 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/07/21 13:24:05 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/07/21 13:31:59 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ int	ft_mapsize(char *str)
 	char	*line;
 
 	fd = open(str, O_RDONLY);
+	if (fd == -1)
+		return (-1);
 	size = 0;
 	line = get_next_line(fd);
 	while (line != NULL)
@@ -38,13 +40,15 @@ char	**ft_readmap(t_game *game, char *str)
 	int		i;
 
 	game->inputsize = ft_mapsize(str);
+	if (game->inputsize == -1)
+		return (NULL);
 	newmap = malloc((game->inputsize + 1) * sizeof(char *));
 	if (!newmap)
 		return (NULL);
 	newmap[game->inputsize] = NULL;
 	fd = open(str, O_RDONLY);
 	if (fd == -1)
-		return (free(newmap), NULL);
+		return (NULL);
 	i = 0;
 	while (i < game->inputsize)
 	{
