@@ -6,7 +6,7 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 12:36:01 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/07/20 13:23:41 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/07/21 13:24:05 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ char	**ft_readmap(t_game *game, char *str)
 	newmap[game->inputsize] = NULL;
 	fd = open(str, O_RDONLY);
 	if (fd == -1)
-		return (NULL);
+		return (free(newmap), NULL);
 	i = 0;
 	while (i < game->inputsize)
 	{
