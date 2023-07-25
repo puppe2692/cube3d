@@ -1,7 +1,7 @@
 SO ./images/metal.xpm
 NO ./images/brique.xpm
 EA ./images/pierre1.xpm
-WE ./images/eagle.xpm
+WE ./images/bluewall.xpm
 
 F 255,2,135
 C 123,123,123
