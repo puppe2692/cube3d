@@ -6,7 +6,7 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 15:22:24 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/07/19 16:45:06 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/07/25 18:29:38 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,9 +70,9 @@ void	ft_handle_keymvt(int keysym, t_game *game)
 	if (keysym == XK_a)
 	{
 		if (game->map.map[(int)(game->plpos.y)][(int)(game->plpos.x
-			+ game->plan.x * game->speed.movespeed)] != '1')
+			- game->plan.x * game->speed.movespeed)] != '1')
 			game->plpos.x -= game->plan.x * game->speed.movespeed;
-		if (game->map.map[(int)(game->plpos.y + game->plan.y
+		if (game->map.map[(int)(game->plpos.y - game->plan.y
 				* game->speed.movespeed)][(int)(game->plpos.x)] != '1')
 			game->plpos.y -= game->plan.y * game->speed.movespeed;
 	}

@@ -6,7 +6,7 @@
 /*   By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 15:09:01 by nwyseur           #+#    #+#             */
-/*   Updated: 2023/07/20 11:56:18 by nwyseur          ###   ########.fr       */
+/*   Updated: 2023/07/25 17:49:01 by nwyseur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 void	ft_init_ppos(t_game *game, int *pers, int i, int j)
 {
 	pers[0]++;
-	game->plpos.x = (double)j;
-	game->plpos.y = (double)i;
+	game->plpos.x = (double)j + 0.5;
+	game->plpos.y = (double)i + 0.5;
 	if (game->map.map[i][j] == 'N')
 	{
 		ft_init_dir(game, 0, -1);
@@ -30,12 +30,12 @@ void	ft_init_ppos(t_game *game, int *pers, int i, int j)
 	else if (game->map.map[i][j] == 'E')
 	{
 		ft_init_dir(game, 1, 0);
-		ft_init_plan(game, 0, -PLAN);
+		ft_init_plan(game, 0, PLAN);
 	}
 	else if (game->map.map[i][j] == 'W')
 	{
 		ft_init_dir(game, -1, 0);
-		ft_init_plan(game, 0, PLAN);
+		ft_init_plan(game, 0, -PLAN);
 	}
 }
 

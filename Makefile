@@ -6,14 +6,13 @@
 #    By: nwyseur <nwyseur@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/28 21:18:35 by nwyseur           #+#    #+#              #
-#    Updated: 2023/07/21 12:46:49 by nwyseur          ###   ########.fr        #
+#    Updated: 2023/07/25 14:43:29 by nwyseur          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		:= cub3D
 
-SRCS_FILES	:= testmain.c \
-				main.c \
+SRCS_FILES	:= main.c \
 				init_data.c \
 				init_map.c \
 				parsing_input.c \
